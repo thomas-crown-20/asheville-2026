@@ -1,0 +1,26 @@
+{
+  "name": "Asheville 2026 · A Mountain Journey",
+  "short_name": "Asheville '26",
+  "description": "Trip plan for our June 2026 Asheville visit — Biltmore, scenic drives, local eats, and itinerary.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f1e8",
+  "theme_color": "#1a3a2e",
+  "categories": ["travel", "lifestyle"],
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
