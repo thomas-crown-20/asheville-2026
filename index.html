@@ -8,6 +8,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Asheville '26" />
 <meta name="description" content="A guided itinerary for our June 2026 Asheville trip — Biltmore, scenic drives, and the best places to eat." />
+<!-- Social / iMessage link previews (complements the Share feature) -->
+<meta property="og:title" content="Asheville 2026 · A Mountain Journey" />
+<meta property="og:description" content="Our June 2026 Asheville trip plan — Biltmore, scenic drives, and the best local tables. Tap to view the shared itinerary." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="icon-512.png" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Asheville 2026 · A Mountain Journey" />
+<meta name="twitter:description" content="Our June 2026 Asheville trip plan — tap to view the shared itinerary." />
 <link rel="manifest" href="manifest.json" />
 <link rel="apple-touch-icon" href="icon-192.png" />
 <title>Asheville 2026 · A Mountain Journey</title>
@@ -40,7 +48,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;opacity:.35;m
 [data-theme="dark"] body::before{opacity:.15;mix-blend-mode:screen}
 
 /* HERO */
-.hero{position:relative;min-height:100svh;padding:1.25rem 1.25rem 2rem;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,#1c2820 0%,#2d4a3e 30%,#5a6a4a 60%,#b8541c 100%);color:#f5f1e8}
+.hero{position:relative;min-height:100svh;padding:calc(1.25rem + env(safe-area-inset-top)) 1.25rem 2rem;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,#1c2820 0%,#2d4a3e 30%,#5a6a4a 60%,#b8541c 100%);color:#f5f1e8}
 .hero-mountains{position:absolute;left:0;right:0;bottom:0;width:100%;height:55%;z-index:1;pointer-events:none}
 .hero-sun{position:absolute;top:18%;right:14%;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,#f7d97a 0%,#f0b545 65%,transparent 100%);z-index:0;box-shadow:0 0 80px rgba(247,217,122,.4);animation:pulse-sun 6s ease-in-out infinite}
 @keyframes pulse-sun{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.05);opacity:.92}}
@@ -111,6 +119,22 @@ main{position:relative;z-index:2;max-width:720px;margin:0 auto;padding:0 1.25rem
 .amenity{font-size:.8rem;color:var(--ink-soft);padding:2px 0;display:inline-flex;align-items:center;gap:.35rem}
 .amenity::before{content:'·';color:var(--accent);font-weight:bold}
 .amenity:first-child::before{display:none}
+/* Hotel single-select (Phase 5) */
+.lodging-card.selected{border:2px solid var(--accent);background:linear-gradient(180deg,rgba(184,84,28,.06) 0%,transparent 60%),var(--bg-elev);box-shadow:var(--shadow-md)}
+.recommended-badge.alt{background:var(--moss)}
+[data-theme="dark"] .recommended-badge.alt{background:var(--moss-light)}
+.hotel-select-btn{background:transparent;border:1px solid var(--line);color:var(--ink-faint);width:42px;height:42px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;font-size:20px;line-height:1;padding:0}
+.hotel-select-btn:hover{border-color:var(--accent);color:var(--accent)}
+.hotel-select-btn.selected{background:var(--accent);border-color:var(--accent);color:#fff}
+.custom-hotel-card{padding:1rem 1.25rem}
+.add-custom-toggle{width:100%;background:transparent;border:1px dashed var(--accent);border-radius:var(--radius-lg);color:var(--accent);padding:.85rem;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.add-custom-toggle:hover{background:rgba(184,84,28,.05)}
+.custom-hotel-form{display:flex;flex-direction:column;gap:.75rem;margin-top:1rem}
+.custom-hotel-form[hidden]{display:none}
+.custom-hotel-form label{display:flex;flex-direction:column;gap:.3rem;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+.custom-hotel-form input,.custom-hotel-form select{font-family:var(--font-sans);font-size:.95rem;padding:.6rem .75rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg);color:var(--ink)}
+.custom-hotel-form input:focus,.custom-hotel-form select:focus{outline:none;border-color:var(--accent)}
+.custom-hotel-form .action-btn.primary{margin-top:.25rem;padding:.7rem;flex:none}
 
 /* TIMELINE / ITINERARY */
 .day-card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius-lg);padding:1.5rem 1.25rem;margin-bottom:1.25rem;position:relative}
@@ -129,6 +153,91 @@ main{position:relative;z-index:2;max-width:720px;margin:0 auto;padding:0 1.25rem
 .timeline-detail{color:var(--ink-soft);font-size:.9rem;line-height:1.5}
 .timeline-note{margin-top:.4rem;padding:.5rem .75rem;background:rgba(184,84,28,.06);border-left:2px solid var(--accent);border-radius:2px;font-size:.82rem;font-style:italic;color:var(--ink-soft);line-height:1.5}
 [data-theme="dark"] .timeline-note{background:rgba(224,122,62,.1)}
+
+/* SLOT (dynamic Plan tab — Phase 3) */
+.slot{position:relative}
+.slot.is-locked::before{background:var(--gold);border-color:var(--gold)}
+.slot.needs-assignment::before{background:transparent;border-style:dashed}
+.slot-head{display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem;flex-wrap:wrap}
+.slot-time{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;background:transparent;border:1px dashed transparent;border-radius:4px;padding:2px 6px;margin:-2px -6px;cursor:pointer;line-height:1.2}
+.slot-time:hover,.slot-time:active,.slot-time:focus{border-color:var(--accent);background:rgba(184,84,28,.06);outline:none}
+.slot-kind{font-family:var(--font-mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-faint);padding:2px 6px;border:1px solid var(--line);border-radius:100px}
+.slot-lock{margin-left:auto;background:transparent;border:none;cursor:pointer;font-size:14px;padding:2px 4px;opacity:.5;transition:opacity .2s;line-height:1}
+.slot-lock:hover{opacity:1}
+.slot-lock.locked{opacity:.85}
+.slot.is-locked .timeline-title{color:var(--ink)}
+.slot.needs-assignment .timeline-title{font-style:italic;color:var(--ink-faint);font-weight:400}
+.slot-subtitle{font-family:var(--font-serif);font-style:italic;color:var(--ink-faint);font-size:.85rem;margin-bottom:.3rem;line-height:1.3}
+.slot-proximity{display:inline-block;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;color:var(--moss);background:rgba(45,74,62,.08);padding:3px 8px;border-radius:100px;margin-top:.4rem}
+[data-theme="dark"] .slot-proximity{color:var(--moss-light);background:rgba(107,142,122,.15)}
+.slot-actions{display:flex;gap:.4rem;margin-top:.55rem;align-items:center}
+.slot-swap{flex:0 1 auto;font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);background:transparent;border:1px solid var(--line);border-radius:100px;padding:.4rem .7rem;cursor:pointer;transition:all .2s}
+.slot-swap:hover,.slot-swap:active{background:var(--ink);color:var(--bg-elev);border-color:var(--ink)}
+.slot.needs-assignment .slot-swap{border-color:var(--accent);color:var(--accent);background:rgba(184,84,28,.04)}
+.slot.needs-assignment .slot-swap:hover,.slot.needs-assignment .slot-swap:active{background:var(--accent);color:#fff}
+.slot-unassign{background:transparent;border:1px solid var(--line);border-radius:50%;width:28px;height:28px;color:var(--ink-faint);cursor:pointer;font-size:11px;display:inline-flex;align-items:center;justify-content:center;padding:0;line-height:1}
+.slot-unassign:hover{color:var(--accent);border-color:var(--accent)}
+.reservation-chip{display:inline-block;margin-top:.45rem;font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;border:1px solid var(--line);background:transparent;color:var(--ink-faint);cursor:pointer;transition:all .2s}
+.reservation-chip.unset{border-style:dashed}
+.reservation-chip.unset:hover{border-color:var(--accent);color:var(--accent)}
+.reservation-chip.needed{border-color:var(--accent);color:var(--accent);background:rgba(184,84,28,.08)}
+.reservation-chip.confirmed{border-color:var(--moss);color:var(--moss);background:rgba(45,74,62,.08)}
+[data-theme="dark"] .reservation-chip.confirmed{border-color:var(--moss-light);color:var(--moss-light)}
+.reservation-chip.walkin{border-color:var(--gold);color:var(--gold);background:rgba(200,144,46,.08)}
+
+/* NOW / NEXT trip-day awareness */
+.day-card.is-today{border-color:var(--accent);box-shadow:var(--shadow-md)}
+.slot.slot-past{opacity:.45}
+.slot.slot-now::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 4px rgba(184,84,28,.18)}
+.slot.slot-now{position:relative}
+.slot-now-badge{font-family:var(--font-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--accent);padding:2px 8px;border-radius:100px;animation:now-pulse 2.4s ease-in-out infinite}
+@keyframes now-pulse{0%,100%{opacity:1}50%{opacity:.6}}
+
+/* TOAST */
+.avl-toast{position:fixed;left:50%;bottom:calc(var(--tab-h) + 1rem + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:.7rem 1rem;border-radius:100px;font-size:.85rem;max-width:80vw;text-align:center;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:200;box-shadow:var(--shadow-md);font-family:var(--font-sans);line-height:1.4}
+.avl-toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+
+/* PICKER SHEET (Phase 4 — swap UI bottom-sheet) */
+.picker-sheet{border:none;padding:0;margin:0;background:var(--bg-elev);color:var(--ink);max-width:none;width:100%;max-height:85vh;position:fixed;left:0;right:0;bottom:0;top:auto;border-radius:18px 18px 0 0;box-shadow:var(--shadow-lg);overflow:hidden;font-family:var(--font-sans)}
+.picker-sheet::backdrop{background:rgba(28,40,32,.4);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+.picker-sheet:not([open]){display:none}
+.picker-sheet[open]{animation:sheet-slide-up .25s ease-out}
+@keyframes sheet-slide-up{from{transform:translateY(20%);opacity:0}to{transform:translateY(0);opacity:1}}
+.picker-handle{width:36px;height:4px;background:var(--line);border-radius:100px;margin:.5rem auto .25rem}
+.picker-header{display:flex;align-items:flex-start;gap:.75rem;padding:.5rem 1.25rem .75rem;border-bottom:1px solid var(--line)}
+.picker-header-text{flex:1;min-width:0}
+.picker-eyebrow{font-family:var(--font-mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem}
+.picker-title{font-family:var(--font-serif);font-size:1.35rem;font-weight:500;line-height:1.2;letter-spacing:-.015em}
+.picker-title em{font-style:italic;color:var(--accent);font-weight:400}
+.picker-close{background:transparent;border:1px solid var(--line);color:var(--ink-soft);width:34px;height:34px;border-radius:50%;cursor:pointer;flex-shrink:0;font-size:14px;display:flex;align-items:center;justify-content:center;padding:0;line-height:1}
+.picker-close:hover{color:var(--accent);border-color:var(--accent)}
+.picker-body{padding:.25rem 0 calc(.5rem + env(safe-area-inset-bottom));max-height:calc(85vh - 100px);overflow-y:auto;-webkit-overflow-scrolling:touch}
+.picker-option{width:100%;background:transparent;border:none;border-bottom:1px dashed var(--line);padding:.85rem 1.25rem;text-align:left;cursor:pointer;display:block;font-family:inherit;color:inherit;transition:background .15s;position:relative}
+.picker-option:hover,.picker-option:active{background:rgba(184,84,28,.06)}
+.picker-option:last-child{border-bottom:none}
+.picker-option.current{background:rgba(184,84,28,.08)}
+.picker-option.current::after{content:'✓';position:absolute;right:1.25rem;top:50%;transform:translateY(-50%);color:var(--accent);font-weight:bold;font-size:1rem}
+.picker-name{font-family:var(--font-serif);font-size:1.05rem;font-weight:500;line-height:1.2;margin-bottom:.25rem;color:var(--ink);padding-right:2rem}
+.picker-meta{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;color:var(--ink-faint);text-transform:uppercase}
+.picker-meta .dot{opacity:.5}
+.picker-meta .walk{color:var(--moss)}
+[data-theme="dark"] .picker-meta .walk{color:var(--moss-light)}
+.picker-meta .empty{color:var(--ink-faint);font-style:italic;text-transform:none;letter-spacing:0;font-family:var(--font-serif)}
+.picker-meta .current-pick{color:var(--accent);text-transform:none;letter-spacing:0;font-family:var(--font-serif);font-style:italic}
+.picker-empty{padding:2rem 1.25rem;text-align:center;color:var(--ink-faint);font-style:italic;font-family:var(--font-serif)}
+.picker-clear{display:block;width:calc(100% - 2.5rem);margin:1rem 1.25rem;padding:.75rem;background:transparent;border:1px solid var(--line);border-radius:100px;color:var(--ink-soft);font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.picker-clear:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ASSIGNMENT CHIP + ADD-TO-PLAN BUTTON (Eat/Do cards) */
+.card-assignment{display:flex;flex-wrap:wrap;gap:.35rem;margin:.4rem 0 .25rem}
+.assignment-chip{font-family:var(--font-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:100px;background:rgba(184,84,28,.1);color:var(--accent);border:1px solid rgba(184,84,28,.3);cursor:pointer;line-height:1.4}
+.assignment-chip:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.add-to-plan-btn{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .8rem;border-radius:100px;border:1px dashed var(--accent);background:rgba(184,84,28,.05);color:var(--accent);cursor:pointer;transition:all .2s}
+.add-to-plan-btn:hover,.add-to-plan-btn:active{background:var(--accent);color:#fff;border-style:solid}
+
+/* SLOT FLASH (when jumped to from Eat/Do) */
+.slot.flash{animation:slot-flash 1.4s ease-out}
+@keyframes slot-flash{0%,30%{background:rgba(184,84,28,.12)}100%{background:transparent}}
 
 /* CHECKLISTS */
 .checklist-group{margin-bottom:1.75rem}
@@ -204,6 +313,13 @@ main{position:relative;z-index:2;max-width:720px;margin:0 auto;padding:0 1.25rem
 .theme-toggle{background:transparent;border:1px solid var(--line);width:36px;height:36px;border-radius:50%;cursor:pointer;color:var(--ink-soft);display:flex;align-items:center;justify-content:center;transition:all .2s;padding:0}
 .theme-toggle:hover{color:var(--accent);border-color:var(--accent)}
 .theme-toggle svg{width:16px;height:16px}
+.header-actions{display:flex;align-items:center;gap:.5rem}
+
+/* SHARED PLAN BANNER (Phase 6a) */
+.shared-banner{position:fixed;top:0;left:0;right:0;z-index:120;display:flex;align-items:center;gap:.75rem;padding:calc(.6rem + env(safe-area-inset-top)) 1rem .6rem;background:var(--moss);color:#f5f1e8;font-size:.85rem;line-height:1.4;transform:translateY(-100%);transition:transform .3s ease-out}
+.shared-banner.show{transform:translateY(0)}
+.shared-banner span{flex:1}
+.shared-banner button{background:rgba(245,241,232,.2);border:none;color:#f5f1e8;width:26px;height:26px;border-radius:50%;cursor:pointer;flex-shrink:0;font-size:12px;line-height:1}
 
 /* EMERGENCY */
 .emergency-card{background:linear-gradient(135deg,rgba(184,84,28,.08),rgba(184,84,28,.02));border:1.5px solid var(--accent);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:1rem}
@@ -229,7 +345,7 @@ a:hover{color:var(--accent-deep)}
 .footer-mark{font-family:var(--font-serif);font-style:italic;font-size:1rem;letter-spacing:0;text-transform:none;color:var(--accent);margin:.5rem 0}
 
 @media (min-width:600px){main{padding:0 2rem}.at-a-glance{grid-template-columns:repeat(4,1fr)}.tab svg{width:22px;height:22px}}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}html{scroll-behavior:auto}}
 
 /* INSTALL BANNER */
 .install-banner{position:fixed;bottom:calc(var(--tab-h) + 1rem + env(safe-area-inset-bottom));left:1rem;right:1rem;background:var(--ink);color:var(--bg);padding:.85rem 1rem;border-radius:var(--radius-lg);display:none;align-items:center;gap:.75rem;z-index:90;box-shadow:var(--shadow-lg);animation:slide-up .3s ease-out}
@@ -276,7 +392,7 @@ a:hover{color:var(--accent-deep)}
       </div>
       <div>
         <div class="label">Party</div>
-        <div class="value">Four travelers<br>One SUV</div>
+        <div class="value">Four travelers<br>One minivan</div>
       </div>
     </div>
   </div>
@@ -285,12 +401,20 @@ a:hover{color:var(--accent-deep)}
 
 <header class="header" id="header">
   <div class="header-title">A trip to <span class="where">Asheville</span></div>
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-    <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="4"/>
-      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-    </svg>
-  </button>
+  <div class="header-actions">
+    <button class="theme-toggle" id="shareBtn" aria-label="Share plan" title="Share this plan">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+        <path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/>
+      </svg>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4"/>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+      </svg>
+    </button>
+  </div>
 </header>
 
 <main id="content">
@@ -303,6 +427,18 @@ a:hover{color:var(--accent-deep)}
   Add this page to your home screen<br>and it works offline
 </div>
 </main>
+
+<dialog id="pickerSheet" class="picker-sheet" aria-labelledby="pickerTitle">
+  <div class="picker-handle"></div>
+  <div class="picker-header">
+    <div class="picker-header-text">
+      <div class="picker-eyebrow" id="pickerEyebrow"></div>
+      <h3 class="picker-title" id="pickerTitle"></h3>
+    </div>
+    <button class="picker-close" id="pickerClose" aria-label="Close">✕</button>
+  </div>
+  <div class="picker-body" id="pickerBody"></div>
+</dialog>
 
 <div class="install-banner" id="installBanner">
   <div class="install-banner-text">

@@ -1,7 +1,7 @@
 // Asheville 2026 PWA · Service Worker
 // Caches everything on first load · works offline thereafter
 
-const CACHE = 'avl-2026-v1';
+const CACHE = 'avl-2026-v10';
 const ASSETS = [
   './',
   './index.html',
