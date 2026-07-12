@@ -1,7 +1,7 @@
 {
-  "name": "Asheville 2026 · A Mountain Journey",
-  "short_name": "Asheville '26",
-  "description": "Trip plan for our June 2026 Asheville visit — Biltmore, scenic drives, local eats, and itinerary.",
+  "name": "Smokies & Blue Ridge 2026",
+  "short_name": "Smokies '26",
+  "description": "Trip plan for our July 2026 Gatlinburg + Asheville trip — 8 of us, Biltmore, the Parkway, and the river.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

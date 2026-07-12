@@ -1,149 +1,125 @@
 /* ============================================================
-   ASHEVILLE 2026 TRIP PWA
-   Single-file data + render layer
-   To reuse for future trips: edit TRIP_DATA below, swap hero
+   ASHEVILLE + GATLINBURG 2026 TRIP PWA
+   Jul 18-25, 2026 · 8 travelers (6 adults + 2 teens)
+   To reuse: edit TRIP_DATA below, swap hero, regen icons
    ============================================================ */
 
 const TRIP_DATA = {
   trip: {
-    name: "Asheville 2026",
-    dates: "Jun 28 – Jul 1, 2026",
-    party: "4 travelers · 1 minivan",
+    name: "Smokies & Blue Ridge 2026",
+    dates: "Jul 18 – 25, 2026",
+    party: "8 travelers · 6 adults + 2 teens",
     origin: "West Chester, OH",
-    destination: "Asheville, NC",
-    nextStop: "Hilton Head, SC"
+    destination: "Gatlinburg TN & Asheville NC"
   },
 
   // ===================== DRIVE =====================
   drive: {
-    overview: "About 5 hours 15 minutes of driving from West Chester to Asheville, mostly down I-75 → I-26. We leave Sunday around noon (12:00 pm) from Beckett Ridge and arrive in Biltmore Village around 5:30–6:00 pm with one good lunch/leg-stretch stop.",
-    distance: "338 miles",
-    duration: "~5h 15min driving + 45min stop",
-    routeName: "I-75 S → I-40 E → I-26 E",
-    steps: [
+    overview: "Two legs down: about 5 hours to Gatlinburg on Saturday, then a short 1.5-hour hop to Asheville on Sunday afternoon after church and lunch in town. One long haul home on the 25th.",
+    legs: [
       {
-        marker: "A",
-        title: "Beckett Ridge / West Chester, OH",
-        meta: "12:00 PM · Departure",
-        desc: "Mom's house, near Beckett Ridge Golf Course. Top off the tank at the Costco or Speedway off Tylersville Rd before getting on I-75 S."
+        title: "Saturday · Home → Gatlinburg",
+        distance: "310 miles",
+        duration: "~5h 0min driving",
+        routeName: "I-75 S → I-40 E → US-321",
+        arrive: "~3:00 PM",
+        steps: [
+          { marker: "A", title: "West Chester, OH", meta: "10:00 AM · Departure", desc: "Fuel up before hitting I-75 S. Long drive today — snacks loaded, playlists queued." },
+          { marker: "B", title: "Lexington KY", meta: "~11:45 AM · gas + restroom", desc: "Good midpoint stop. Buc-ee's-style options or a Chick-fil-A near the interstate. Quick 20 min." },
+          { marker: "C", title: "Knoxville, TN", meta: "~1:30 PM · lunch stop", desc: "Halfway-ish. Grab lunch to save your appetite for Gatlinburg strolling. Calhoun's on the River is a solid Knoxville classic if there's time." },
+          { marker: "D", title: "Gatlinburg, TN", meta: "~3:00 PM · Arrival", desc: "Check in, unload, hit the pool. Walk downtown for dinner and Mad Dog's Creamery for dessert." }
+        ]
       },
       {
-        marker: "B",
-        title: "Lunch stop · Corbin, KY",
-        meta: "~2:15 PM · 130 mi from start",
-        desc: "Sanders Café (the original KFC) is in Corbin — a fun stop right off I-75 if folks want it. Or skip the kitsch and try Dixie Café for Southern plate lunches a few exits up. Clean restrooms either way."
+        title: "Sunday · Gatlinburg → Asheville",
+        distance: "82 miles",
+        duration: "~1h 45min driving",
+        routeName: "US-321 → I-40 E → Airbnb",
+        arrive: "~4:00 PM",
+        steps: [
+          { marker: "A", title: "Church in Gatlinburg", meta: "Sun AM · service", desc: "First Baptist Gatlinburg or Roaring Fork Baptist are both walkable/short-drive from downtown hotels." },
+          { marker: "B", title: "Lunch in town", meta: "~12:30 PM", desc: "Pancake Pantry (a Gatlinburg tradition) or Crockett's Breakfast Camp — bring appetite. Alt: Mama's Farmhouse in Pigeon Forge for family-style Southern." },
+          { marker: "C", title: "Roll toward Asheville", meta: "~2:00 PM · scenic route", desc: "Take I-40 E through the Pigeon River Gorge — one of the prettiest interstate stretches anywhere. About 90 minutes." },
+          { marker: "D", title: "West Asheville · Airbnb check-in", meta: "~4:00 PM · Sun Jul 19", desc: "129 Climbing Aster Way. Check-in opens at 4 PM sharp — plenty of time. Unload, groceries run before dinner." }
+        ]
       },
       {
-        marker: "C",
-        title: "Knoxville, TN",
-        meta: "~3:45 PM · 215 mi · 2/3 of the way",
-        desc: "I-75 ends, you'll merge onto I-40 E. From here the drive gets prettier — into the Smokies foothills. Bathroom break + drinks at the Buc-ee's in Sevierville if you want the experience (a few miles off I-40)."
-      },
-      {
-        marker: "D",
-        title: "Through the Pigeon River Gorge",
-        meta: "~4:30 PM · scenic mile",
-        desc: "I-40 winds through one of the most beautiful interstate stretches in the country. Watch for the NC welcome sign. Mom-in-law will love this section — just looking out the window."
-      },
-      {
-        marker: "E",
-        title: "Asheville · Biltmore Village",
-        meta: "~5:30–6:00 PM · Arrival",
-        desc: "Exit I-26 at Biltmore Ave. Check in, freshen up, walk to dinner in the village. Easy first night — no driving required."
+        title: "Saturday · Asheville → Home",
+        distance: "440 miles",
+        duration: "~7h 0min driving",
+        routeName: "I-26 W → I-40 W → I-75 N",
+        arrive: "evening",
+        steps: [
+          { marker: "A", title: "Airbnb checkout", meta: "Sat Jul 25 · 10:00 AM sharp", desc: "Pack the night before. Coffee + last morning walk, then out." },
+          { marker: "B", title: "Knoxville lunch stop", meta: "~1:00 PM", desc: "Halfway home. Pick something quick — J.C. Holdway or a reliable Southern spot." },
+          { marker: "C", title: "Home, West Chester", meta: "~6:00–7:00 PM", desc: "Long day. Unpack tomorrow." }
+        ]
       }
-    ],
-    returnLeg: {
-      title: "Wednesday morning · onward to Hilton Head",
-      steps: [
-        { time: "8:00 AM", what: "Slow breakfast at the hotel or Biscuit Head" },
-        { time: "9:30 AM", what: "Roll out of Asheville · take I-26 E toward Columbia" },
-        { time: "12:30 PM", what: "Lunch stop in Columbia, SC (Lizard's Thicket for Southern, or any local pick)" },
-        { time: "3:00–4:00 PM", what: "Arrive Hilton Head · check in" }
-      ],
-      distance: "295 miles · ~5h 0min driving"
-    }
+    ]
   },
 
   // ===================== LODGING =====================
   lodging: [
     {
-      id: "ac-biltmore",
-      name: "AC Hotel Asheville Biltmore Village",
-      tagline: "Modern · Marriott · indoor pool",
-      tags: ["Recommended", "Biltmore Village", "Modern"],
-      neighborhood: "biltmore-village",
-      price: 138, // est. per night nightly base
-      nights: 3,
-      estTotal: "≈ $510–620 (2 rooms × 3 nights)",
-      desc: "Newly renovated Marriott AC right in the heart of Biltmore Village — a 5-minute walk to the Biltmore gates, dinner restaurants in the village, and quiet at night. Clean, modern, minimalist rooms. Indoor pool + hot tub (year-round), great AC Kitchen breakfast (European-style spread), and the rooftop AC Lounge has views. Two king rooms side-by-side or a one-bedroom suite + standard king for the hangout vibe.",
-      amenities: ["Indoor pool", "Hot tub", "Fitness center", "AC Kitchen breakfast (paid)", "Walking distance to Biltmore", "EV charging", "Quiet at night"],
-      address: "10 Wedgefield Dr, Asheville, NC 28803",
-      phone: "+1 828-258-2522",
-      website: "https://www.marriott.com/en-us/hotels/avlsa-ac-hotel-asheville-biltmore-village/",
-      booking: "https://www.marriott.com/en-us/hotels/avlsa-ac-hotel-asheville-biltmore-village/rooms/",
-      why: "Best balance for the group: new, clean, well-priced, walk to dinner. Closest to your stated preference for newer/nicer without paying $500+/night.",
+      id: "airbnb-asheville",
+      name: "Airbnb · West Asheville",
+      tagline: "Whole house · 8 people · Sun 19 – Sat 25",
+      tags: ["Booked", "West Asheville", "Whole house"],
+      price: null,
+      nights: 6,
+      estTotal: "Booked · confirmation HMEQTT4FZM",
+      desc: "Home base for the week. 129 Climbing Aster Way in West Asheville — about 10 min drive to downtown, 15 min to Biltmore, 5 min to great neighborhood spots (Hole Doughnuts, Sunny Point Café, Biscuit Head). Check-in strict 4:00 PM Sunday; checkout strict 10:00 AM Saturday.",
+      amenities: ["Full kitchen", "Sleeps 8", "West Asheville location", "Close to Hole Doughnuts"],
+      address: "129 Climbing Aster Way, Asheville, NC 28806",
+      website: "https://www.airbnb.com/trips/shared/4851c359-aa14-4eee-a8e1-96fabdf0febd?confCode=HMEQTT4FZM&principal_token=51b501c0-eb64-47ca-8ca8-1d11c4e375e1&s=67&unique_share_id=89c69328-c097-4260-a724-a3b53277f642",
+      why: "Confirmed booking. All 8 under one roof, kitchen for grill night and sandwich lunches.",
       featured: true
     },
     {
-      id: "courtyard-biltmore",
-      name: "Courtyard by Marriott Biltmore Village",
-      tagline: "Solid mid-tier · indoor pool",
-      tags: ["Biltmore Village", "Value"],
-      neighborhood: "biltmore-village",
-      price: 126,
-      nights: 3,
-      estTotal: "≈ $470–560 (2 rooms × 3 nights)",
-      desc: "A reliable Courtyard within walking distance of the Biltmore gates and village restaurants. Slightly older feel than the AC across the street, but very well-reviewed (9.1/10 guest rating), with indoor pool, fitness center, and a restaurant. A solid Plan B if AC is booked or if you want a few extra dollars in the kitty for dinners.",
-      amenities: ["Indoor pool", "Fitness center", "On-site bistro", "Walking distance to Biltmore"],
-      address: "1 Buckstone Pl, Asheville, NC 28803",
-      phone: "+1 828-281-0041",
-      website: "https://www.marriott.com/en-us/hotels/avlbm-courtyard-asheville-biltmore-village/"
+      id: "greystone-gatlinburg",
+      name: "Greystone Lodge on the River (Gatlinburg)",
+      tagline: "Sat Jul 18 · walking distance downtown",
+      tags: ["Sat Jul 18", "Downtown Gatlinburg", "Pool"],
+      price: 180,
+      nights: 1,
+      estTotal: "≈ $600–900 for 4 rooms × 1 night",
+      desc: "Family favorite right in downtown Gatlinburg — across from Ripley's Aquarium, walkable to everything on the Parkway. Heated outdoor pool with waterslide, free hot breakfast, free parking. Family suites sleep up to 5. Book 4 standard rooms or 2 family suites for the group of 8.",
+      amenities: ["Heated pool + waterslide", "Free breakfast", "Free parking", "Family suites available", "Walk to Ripley's, SkyPark, Parkway"],
+      address: "559 Parkway, Gatlinburg, TN 37738",
+      phone: "+1 865-436-5621",
+      website: "https://greystonelodgetn.com",
+      why: "Best value for the group — pool the kids will use, walking distance to everywhere, free breakfast Sunday morning, sensibly priced for a one-night stop.",
+      featured: true
     },
     {
-      id: "homewood-suites",
-      name: "Homewood Suites by Hilton Asheville-Tunnel Rd",
-      tagline: "All suites · kitchens · free breakfast",
-      tags: ["Suite", "Free breakfast", "East Asheville"],
-      neighborhood: "east-asheville",
+      id: "margaritaville-gatlinburg",
+      name: "Margaritaville Resort Gatlinburg",
+      tagline: "Sat Jul 18 · splurge · 9.8 rating",
+      tags: ["Sat Jul 18", "Splurge", "Downtown Gatlinburg"],
+      price: 320,
+      nights: 1,
+      estTotal: "≈ $1,000–1,300 for 4 rooms × 1 night",
+      desc: "Right in the heart of downtown next to Anakeesta and Ripley's Aquarium. Indoor + outdoor pools, waterslide, 24-hr fitness, room service. Newer, higher-end. Splurge option for a one-night send-off. Sleeps up to 6 in suites.",
+      amenities: ["Indoor + outdoor pools", "Waterslide", "Onsite restaurant", "Walk to Anakeesta + Ripley's"],
+      address: "539 Historic Nature Trail, Gatlinburg, TN 37738",
+      phone: "+1 865-430-4200",
+      website: "https://www.margaritavilleresortgatlinburg.com",
+      why: "Nicest option. Worth it if you want the whole crew's Saturday night to feel special."
+    },
+    {
+      id: "hi-express-gatlinburg",
+      name: "Holiday Inn Express Gatlinburg Downtown",
+      tagline: "Sat Jul 18 · value + water park",
+      tags: ["Sat Jul 18", "Value", "Water park"],
       price: 165,
-      nights: 3,
-      estTotal: "≈ $500–600 (2 suites × 3 nights)",
-      desc: "Every room is a suite — separate living room, full kitchen, fridge, microwave, dining table. This is your best bet if you want the 'hang out and play games' room without renting a house. Free hot breakfast every morning is a real money saver for four people. About 8 minutes from Biltmore, 10 minutes from downtown. Less pretty location than Biltmore Village, but the rooms make up for it.",
-      amenities: ["All suites w/ kitchen", "Free hot breakfast", "Indoor pool", "Free parking", "Pet friendly"],
-      address: "87 Tunnel Rd, Asheville, NC 28805",
-      phone: "+1 828-252-2522",
-      website: "https://www.hilton.com/en/hotels/avlhwhw-homewood-suites-asheville/",
-      why: "Best for the 'living room hangout' need. Two one-bedroom suites side-by-side gives each couple privacy + a real common space."
-    },
-    {
-      id: "residence-inn-biltmore",
-      name: "Residence Inn Asheville Biltmore",
-      tagline: "Studios &amp; suites with kitchens",
-      tags: ["Suite", "Free breakfast", "Biltmore Village"],
-      neighborhood: "biltmore-village",
-      price: 175,
-      nights: 3,
-      estTotal: "≈ $530–630 (2 suites × 3 nights)",
-      desc: "All-suite Marriott in Biltmore Village. Each room has a full kitchen and sitting area, free hot breakfast included, outdoor pool. Walk to dinner in the village; 5 min drive to Biltmore Estate. Great middle-ground option that has both the suite layout AND the desirable location.",
-      amenities: ["All suites w/ kitchen", "Free hot breakfast", "Outdoor pool", "Walk to Biltmore Village restaurants"],
-      address: "701 Biltmore Ave, Asheville, NC 28803",
-      phone: "+1 828-281-3361",
-      website: "https://www.marriott.com/en-us/hotels/avlri-residence-inn-asheville-biltmore/"
-    },
-    {
-      id: "vrbo-mountain-cabin",
-      name: "VRBO · Mountaintop Log Cabin (Arden)",
-      tagline: "Whole 3BR cabin · panoramic views · 20 min to Biltmore",
-      tags: ["Whole house", "Mountain views", "Private"],
-      neighborhood: "arden",
-      price: 350,
-      nights: 3,
-      estTotal: "≈ $1,200–1,400 total (3 nights + fees)",
-      desc: "Whole-home rental for total privacy. Three bedrooms, awe-inspiring mountain views from the deck, 300-acre nature preserve next door, gas fire pit, full kitchen, washer/dryer. 15 minutes to Biltmore Village, 20 to downtown. The trade-off: 20 min drive each way to dinner, and one bathroom less convenient than two hotel rooms.",
-      amenities: ["3 bedrooms", "Mountain views", "Fire pit", "Full kitchen", "Wash/dry", "Wraparound deck"],
-      address: "Arden, NC (~20 min S of downtown Asheville)",
-      website: "https://www.vrbo.com/713381",
-      why: "Best if you want a 'lodge' feel — porch coffee, no neighbors, big mountain views. Worth considering as a splurge but adds driving time."
+      nights: 1,
+      estTotal: "≈ $550–700 for 4 rooms × 1 night",
+      desc: "Solid budget-conscious pick. Connected to Holiday Inn Vacations resort which means you get access to a real water park + kids splash zone. Free hot breakfast. Walking distance to the Space Needle and everything on the Parkway. Rooms sleep up to 6.",
+      amenities: ["Access to water park", "Kids splash zone", "Free hot breakfast", "Walk to downtown"],
+      address: "560 Parkway, Gatlinburg, TN 37738",
+      phone: "+1 865-436-3220",
+      website: "https://www.ihg.com/holidayinnexpress/hotels/us/en/gatlinburg/gktdt/hoteldetail",
+      why: "Water park access for the teens without paying resort prices."
     }
   ],
 
@@ -151,58 +127,113 @@ const TRIP_DATA = {
   itinerary: [
     {
       day: 1,
-      date: "Sun · Jun 28",
-      title: "Drive Down & <em>Settle In</em>",
+      date: "Sat · Jul 18",
+      title: "Drive to <em>Gatlinburg</em>",
       items: [
-        { time: "11:30 AM", title: "Church", detail: "Service in Waynesville. Light brunch or coffee on the way out." },
-        { time: "12:00 PM", title: "Depart West Chester", detail: "From Beckett Ridge area. I-75 South. Bathroom now, snacks loaded." },
-        { time: "2:15 PM", title: "Lunch stop · Corbin, KY", detail: "Sanders Café (original KFC, fun) or Dixie Café. ~30–45 min stop." },
-        { time: "5:30 PM", title: "Arrive Biltmore Village", detail: "Check in. Unpack a little, freshen up, walk the village." },
-        { time: "7:00 PM", title: "Dinner · The Corner Kitchen", detail: "Steps from the hotel in Biltmore Village. Famous Reuben, comfortable Southern fare. Reserve in advance.", note: "Reserve early — this is the best spot in walking distance." },
-        { time: "9:00 PM", title: "Hot tub & turn in", detail: "Long drive done. Hot tub at the hotel or evening porch. Early to bed — Biltmore tomorrow." }
+        { time: "10:00 AM", title: "Depart West Chester", detail: "Load up, top off tank, hit I-75 South. About 5 hours of driving." },
+        { time: "1:30 PM", title: "Lunch · Knoxville", detail: "Halfway. Grab something quick or Calhoun's on the River if there's time." },
+        { time: "3:00 PM", title: "Arrive Gatlinburg · check in", detail: "Unload, change, hit the hotel pool. Everyone decompress." },
+        { time: "5:30 PM", title: "Walk the Parkway", detail: "Head into downtown Gatlinburg. Space Needle for the view if the crew wants it. Wander the shops.", note: "Everything on the Parkway is walkable from the recommended hotels." },
+        { time: "6:30 PM", title: "Dinner in town", detail: "Peddler Steakhouse (nice), Cherokee Grill (upscale casual), or Bennett's Pit BBQ (casual, family-friendly)." },
+        { time: "8:30 PM", title: "Mad Dog's Creamery & Donuts", detail: "731 East Parkway — the reason to come. Ice cream, funnel cakes, donuts. Order one of everything.", note: "The bear statue out front is the landmark." },
+        { time: "10:00 PM", title: "Back to hotel", detail: "Early night — church in the morning." }
       ]
     },
     {
       day: 2,
-      date: "Mon · Jun 29",
-      title: "Blue Ridge <em>Parkway Day</em>",
+      date: "Sun · Jul 19",
+      title: "Gatlinburg <em>to Asheville</em>",
       items: [
-        { time: "8:00 AM", title: "Breakfast · Biscuit Head", detail: "Cathouse biscuits with shiitake mushroom gravy + a jam bar. A true Asheville thing. Beat the line by arriving by 8." },
-        { time: "9:30 AM", title: "Folk Art Center (Milepost 382.5)", detail: "Free entry. Beautiful crafts of the Southern Highland Craft Guild — quilts, pottery, woodturning. Plenty of seating, AC, easy walking.", note: "Great accessibility for mom-in-law. Quiet morning crowd." },
-        { time: "11:00 AM", title: "Blue Ridge Parkway scenic drive south", detail: "From the Folk Art Center, drive south to the NC Arboretum. Pull off at the overlooks. Pisgah views around milepost 408." },
-        { time: "12:30 PM", title: "Lunch · Pisgah Inn (if open) or back in town", detail: "Pisgah Inn at 5,000 ft has the only restaurant on the Parkway. Reserve! If too far/closed, head back for lunch at Tupelo Honey (Biltmore Village) or Bear's Smokehouse." },
-        { time: "2:30 PM", title: "North Carolina Arboretum", detail: "Stunning bonsai garden, easy paved paths, golf-cart shuttle available if walking is too much. Pretty in any weather.", note: "Free shuttle around the gardens — easy on the legs." },
-        { time: "5:00 PM", title: "Back to the hotel · rest", detail: "Hot tub, balcony, board games. Get mom-in-law's afternoon rest in." },
-        { time: "6:30 PM", title: "Dinner · Buxton Hall Barbecue", detail: "Whole-hog Eastern Carolina BBQ. Their smoky pimento cheese is famous. 10 min drive. No reservations — go a little early.", note: "Casual + delicious + a true local spot." },
-        { time: "8:30 PM", title: "Dessert · The Hop Ice Cream", detail: "Local handmade ice cream since 1978. Two locations — pick the closest. Sit, walk, enjoy." }
+        { time: "8:00 AM", title: "Hotel breakfast", detail: "Free hot breakfast at Greystone or Holiday Inn Express. Fuel up." },
+        { time: "10:00 AM", title: "Church service", detail: "First Baptist Gatlinburg (downtown, 10:45 AM service) or Roaring Fork Baptist. Both are close to downtown hotels." },
+        { time: "12:00 PM", title: "Lunch in town", detail: "Pancake Pantry (Gatlinburg icon, expect a line), Crockett's Breakfast Camp (huge portions), or Mama's Farmhouse for family-style Southern in Pigeon Forge." },
+        { time: "2:00 PM", title: "Drive to Asheville", detail: "I-40 East through the Pigeon River Gorge. 90 minutes of gorgeous scenery — bring the camera." },
+        { time: "4:00 PM", title: "Check in at the Airbnb", detail: "129 Climbing Aster Way, West Asheville. Check-in opens at 4 PM sharp.", note: "Confirmation HMEQTT4FZM." },
+        { time: "5:00 PM", title: "Grocery run", detail: "Ingles or Whole Foods (both close to the Airbnb) for the week — breakfast items, sandwich fixings, drinks, snacks, grill supplies." },
+        { time: "7:00 PM", title: "Dinner: casual first night", detail: "Sunny Point Café (5 min from the house) or order in — everyone's tired from the road." }
       ]
     },
     {
       day: 3,
-      date: "Tue · Jun 30",
-      title: "Biltmore <em>Estate Day</em>",
+      date: "Mon · Jul 20",
+      title: "First full day · <em>ease in</em>",
       items: [
-        { time: "7:30 AM", title: "Breakfast at the hotel", detail: "Light breakfast — there's a lot of walking today. Coffee, bagels, fruit." },
-        { time: "9:00 AM", title: "Arrive Biltmore · check in at Reception", detail: "Pre-buy tickets online (saves $10/each). Pick House & Grounds with audio tour. Tuesdays = $18 off for 65+ on adult admission — Mom can save here.", note: "Wheelchairs are free at the entrance — even if not using one full-time, it's a smart fallback for Mom." },
-        { time: "9:30 AM", title: "Biltmore House tour", detail: "Self-guided with audio tour (1.5–2 hrs). Only the first 2 floors are wheelchair-accessible — the basement & upper floors require stairs. Take the elevator where offered. Plenty of benches.", note: "Go early — first tour times have the smallest crowds." },
-        { time: "11:30 AM", title: "Gardens & Conservatory", detail: "Easy garden paths. The Conservatory has benches, orchids, and great photo spots. Skip strenuous trails." },
-        { time: "12:30 PM", title: "Lunch · Stable Café (on Biltmore grounds)", detail: "Tucked into the original horse stalls. The trout BLT is signature, but the chicken salad is the safe bet. No reservation needed." },
-        { time: "2:00 PM", title: "Antler Hill Village", detail: "Free shuttle from the House parking lot. Browse the shops, the Outdoor Adventure Center, the Farm (animals to see). The dairy bar has ice cream — yes please.", note: "Easy, sit-down friendly. Park in shade." },
-        { time: "4:00 PM", title: "Back to hotel · rest before dinner", detail: "Pool, hot tub, balcony time. Long day on the feet." },
-        { time: "7:00 PM", title: "Dinner · Rhubarb (downtown)", detail: "Farm-to-table from chef John Fleer. Beautiful seasonal menu. 10 min from hotel; valet park or use the deck across the street. Reserve in advance.", note: "Special-occasion-worthy. Calmer/quieter than the busier downtown spots." },
-        { time: "9:00 PM", title: "Donut nightcap · Hole Doughnuts", detail: "Made-to-order, fried-while-you-wait. Locals call them the best in the South. Or grab a box to-go for tomorrow's drive." }
+        { time: "8:30 AM", title: "Breakfast at the house or Biscuit Head", detail: "If going out: Biscuit Head West Asheville (walkable-ish from the Airbnb, huge biscuits, jam bar)." },
+        { time: "10:30 AM", title: "Downtown Asheville stroll", detail: "Park downtown and walk. Grove Arcade, the Chihuly-esque Basilica of St Lawrence, the drum circle (Fri only), independent shops." },
+        { time: "12:30 PM", title: "Lunch · Pack's Tavern", detail: "20 S Spruce St, right on Pack Square Park. Historic 1907 building, great patio, brisket mac & cheese is famous. Big enough for the group, takes reservations.", note: "★ Confirmed on your list. Reserve for 8." },
+        { time: "2:30 PM", title: "River Arts District", detail: "Working artist studios, murals, riverside walk. Casual and adult+teen friendly." },
+        { time: "5:00 PM", title: "Back to the house · rest / pool", detail: "Recharge before dinner." },
+        { time: "7:00 PM", title: "Dinner · The Corner Kitchen (Biltmore Village)", detail: "Farm-to-table, cozy, reservations required for 8. Alt: Chestnut downtown." },
+        { time: "9:00 PM", title: "The Hop Ice Cream", detail: "Handmade since 1978. West Asheville location is close to the house." }
       ]
     },
     {
       day: 4,
-      date: "Wed · Jul 1",
-      title: "Slow Morning <em>& Onward</em>",
+      date: "Tue · Jul 21",
+      title: "Biltmore <em>Estate Day</em>",
       items: [
-        { time: "8:00 AM", title: "Breakfast at hotel · pack up", detail: "Light packing-day breakfast." },
-        { time: "9:00 AM", title: "Quick stop · Black Mountain village", detail: "15 min east on I-40. Walkable downtown, antique shops, a hot coffee. Easy 45-min stop without overdoing it. Hit Key City Antiques + a peek at the Old Depot.", note: "Optional — skip if everyone is ready to push for Hilton Head." },
-        { time: "10:30 AM", title: "Roll south toward Hilton Head", detail: "Back on I-26 E → I-95 S → 278 E. About 5 hrs to Hilton Head with one lunch stop." },
-        { time: "12:30 PM", title: "Lunch · Columbia, SC area", detail: "Lizard's Thicket (local Southern chain done right) or pick on the fly. 30 min stop." },
-        { time: "3:30 PM", title: "Arrive Hilton Head!", detail: "Check in (most properties 3–4 PM). Toes in the sand by sunset." }
+        { time: "7:30 AM", title: "Breakfast at the house", detail: "Light — lots of walking today." },
+        { time: "9:00 AM", title: "Arrive Biltmore · early entry", detail: "Pre-buy tickets online (saves $10/ticket). Tuesday means smaller crowds than the weekend. Group of 8 — book adjacent time slots.", note: "Note: the $18 senior discount is 65+ only on Tue/Wed — mention if anyone qualifies." },
+        { time: "9:30 AM", title: "Biltmore House self-guided tour", detail: "Audio tour ~1.5–2 hours. Elevator to upper floors. Teens usually love the basement (bowling alley, kitchens, servants' halls)." },
+        { time: "11:30 AM", title: "Gardens + Conservatory", detail: "Easy garden paths, orchids in the Conservatory, photo spots everywhere." },
+        { time: "12:30 PM", title: "Lunch · Stable Café (on Biltmore)", detail: "Eat in the original horse stalls. Trout BLT or chicken salad. No reservation needed." },
+        { time: "2:00 PM", title: "Antler Hill Village + Farm", detail: "Free shuttle from the House. Shops, the farm with animals, the outdoor adventure center. Dairy bar for ice cream." },
+        { time: "5:00 PM", title: "Back to Asheville · rest", detail: "Regroup at the house." },
+        { time: "7:00 PM", title: "Dinner · Rhubarb or Cúrate", detail: "Rhubarb (farm-to-table, downtown), or Cúrate for Spanish tapas — great for a group ordering to share. Reserve well in advance for 8." },
+        { time: "9:00 PM", title: "Hole Doughnuts nightcap", detail: "168 Haywood Rd, West Asheville — literally minutes from the Airbnb. Made-to-order, fresh out of the fryer.", note: "★ Confirmed on your list." }
+      ]
+    },
+    {
+      day: 5,
+      date: "Wed · Jul 22",
+      title: "Blue Ridge <em>Parkway Day</em>",
+      items: [
+        { time: "8:00 AM", title: "Breakfast · Sunny Point Café", detail: "West Asheville brunch spot beloved by locals. 5 min from the Airbnb. Line moves." },
+        { time: "10:00 AM", title: "Drive the Parkway south", detail: "Enter at the NC Arboretum entrance (MP 393.6). Drive south toward Mt Pisgah. Stop at overlooks — bring cameras." },
+        { time: "12:00 PM", title: "Sliding Rock (Pisgah National Forest)", detail: "Natural 60-ft granite waterslide with a pool at the bottom. Life guards on duty summer. Bring swimsuits, water shoes, towels. About 45 min from downtown Asheville, but a legendary teen memory.", note: "$5/person parking. Cold water! Pack a change of clothes." },
+        { time: "2:30 PM", title: "Looking Glass Falls", detail: "Roadside 60-ft waterfall on US-276 near Sliding Rock. Everyone can see it from the pull-off." },
+        { time: "4:00 PM", title: "Pisgah Inn Restaurant · view break", detail: "Blue Ridge Parkway MP 408.6. 5,000-ft elevation. Grab a drink or snack for the view. Reserve ahead for a meal if you want dinner." },
+        { time: "6:30 PM", title: "Grill night at the Airbnb", detail: "Burgers, dogs, sausages. Big salad, chips, watermelon. Casual family dinner after a long adventure day.", note: "Prep the shopping list Mon or Tue." },
+        { time: "9:00 PM", title: "Movie night at the house", detail: "Pajamas, popcorn, whatever's on. Or continue the porch conversation." }
+      ]
+    },
+    {
+      day: 6,
+      date: "Thu · Jul 23",
+      title: "River day · <em>tubing & town</em>",
+      items: [
+        { time: "9:00 AM", title: "Slow breakfast at the house", detail: "Everyone at their own pace." },
+        { time: "11:00 AM", title: "French Broad River tubing", detail: "Zen Tubing or Asheville Adventure Center. 2-3 hour lazy float. Kids and adults all love this. Book same-day or day-before.", note: "Bring sunscreen, sunglasses on a strap, cheap water shoes." },
+        { time: "2:00 PM", title: "Sandwich lunch back at the house", detail: "Deli sandwiches, chips, cold drinks on the deck. Easy." },
+        { time: "3:30 PM", title: "Downtime · pool / porch / naps", detail: "Some folks rest, some walk the neighborhood." },
+        { time: "6:00 PM", title: "Dinner · Buxton Hall Barbecue", detail: "Whole-hog Eastern Carolina BBQ, South Slope. No reservations — go early or plan to wait. The pimento cheese starter is legendary. Great group order.", note: "Alt: 12 Bones Smokehouse (River Arts) for the famous ribs." },
+        { time: "8:30 PM", title: "Ice cream · The Hop or Ultimate", detail: "Take the ice cream to McCormick Field for a Tourists game if there's one going." }
+      ]
+    },
+    {
+      day: 7,
+      date: "Fri · Jul 24",
+      title: "Last full day · <em>your pick</em>",
+      items: [
+        { time: "9:00 AM", title: "Breakfast at the house", detail: "Use up what's in the fridge." },
+        { time: "10:30 AM", title: "Option A: Chimney Rock State Park", detail: "45 min drive east. 315-ft elevator to the top of Chimney Rock for panoramic views. Hickory Nut Falls trail is easy-moderate. Great for the teens.", note: "$17/adult, cheaper for kids. Pack water." },
+        { time: "10:30 AM", title: "Option B: Antique + shopping day", detail: "Antique Tobacco Barn (huge), Black Mountain village (charming small town), Biltmore Village boutiques. Easier day, still fun." },
+        { time: "12:30 PM", title: "Lunch on the go", detail: "12 Bones ribs, or Bear's Smokehouse burnt ends, or a farm stand along the way." },
+        { time: "3:00 PM", title: "Back to Asheville · pack a bit", detail: "Start pulling things together for tomorrow's checkout." },
+        { time: "5:30 PM", title: "Sandwiches / grazing dinner at the house", detail: "Use up what's left. Charcuterie, cold cuts, salad, dessert." },
+        { time: "7:30 PM", title: "Sunset at the Grove Park Inn terrace", detail: "290 Macon Ave. Free to enter the lobby and Sunset Terrace. Order drinks/desserts to enjoy the view. A real Asheville moment.", note: "Or the Omni Grove Park Inn — same thing. Historic mountain hotel." }
+      ]
+    },
+    {
+      day: 8,
+      date: "Sat · Jul 25",
+      title: "Drive <em>home</em>",
+      items: [
+        { time: "8:00 AM", title: "Final breakfast", detail: "Clean out the fridge. Coffee, whatever's left." },
+        { time: "9:30 AM", title: "Final pack + walk-through", detail: "Trash out, dishes done. Airbnb rules." },
+        { time: "10:00 AM", title: "Checkout · roll home", detail: "Strict 10 AM checkout. Head north on I-26 W → I-40 W → I-75 N." },
+        { time: "1:00 PM", title: "Knoxville lunch stop", detail: "Halfway. Something quick." },
+        { time: "6:00 PM", title: "Home", detail: "Long drive done. Unpack tomorrow." }
       ]
     }
   ],
@@ -210,13 +241,21 @@ const TRIP_DATA = {
   // ===================== RESTAURANTS =====================
   restaurants: [
     {
+      name: "Pack's Tavern",
+      cat: "American · Historic pub",
+      tags: ["★ Your pick", "Downtown", "Groups OK"],
+      desc: "Local favorite in a beautifully restored 1907 building next to Pack Square Park. 35+ local drafts, comfort food, huge portions. Brisket mac & cheese is the #1 seller. Big patio. Reserves for large groups.",
+      address: "20 S Spruce St, Asheville, NC 28801",
+      phone: "+1 828-225-6944",
+      website: "https://packstavern.com",
+      meal: "Lunch · Dinner",
+      price: "$$"
+    },
+    {
       name: "The Corner Kitchen",
-      id: "corner-kitchen",
-      neighborhood: "biltmore-village",
-      mealTypes: ["dinner"],
       cat: "American · Farm-to-table",
-      tags: ["Biltmore Village", "Walk from hotel", "Date-night"],
-      desc: "The best restaurant inside Biltmore Village. Famous for their Reuben and pepper-grilled Brasstown ribeye. Reservations strongly recommended — book ahead. Note: damaged in Hurricane Helene (Sept 2024) and reopened in 2025 — confirm your reservation directly when booking.",
+      tags: ["Biltmore Village", "Date-night"],
+      desc: "Best restaurant inside Biltmore Village. Famous Reuben and pepper-grilled ribeye. Reservations needed for a group of 8 — book at least a week ahead.",
       address: "3 Boston Way, Asheville, NC 28803",
       phone: "+1 828-274-2439",
       website: "https://www.thecornerkitchen.com",
@@ -225,12 +264,9 @@ const TRIP_DATA = {
     },
     {
       name: "Rhubarb",
-      id: "rhubarb",
-      neighborhood: "downtown",
-      mealTypes: ["dinner"],
       cat: "Farm-to-table · Fine dining",
-      tags: ["Downtown", "Special occasion", "Closed Tue–Wed"],
-      desc: "Chef John Fleer's seasonal Southern menu in the heart of downtown. Wood-fired flavors, locally sourced everything, beautiful room. Reserve in advance. ⚠️ Currently open Thursday–Monday only — closed Tuesday and Wednesday. (Day 3 of our trip falls on a Tuesday, so we picked Chestnut instead.)",
+      tags: ["Downtown", "Special occasion"],
+      desc: "Chef John Fleer's seasonal Southern menu on Pack Square. Wood-fired flavors, mostly local sourcing. Reserve well ahead for 8.",
       address: "7 SW Pack Square, Asheville, NC 28801",
       phone: "+1 828-785-1503",
       website: "https://www.rhubarbasheville.com",
@@ -238,55 +274,65 @@ const TRIP_DATA = {
       price: "$$$$"
     },
     {
-      name: "The Market Place",
-      id: "market-place",
-      neighborhood: "downtown",
-      mealTypes: ["dinner"],
-      cat: "Fine dining · Farm-to-table",
-      tags: ["Downtown", "Special occasion", "Since 1979"],
-      desc: "Chef William Dissen's inventive menu — produce mostly from within 100 miles of Asheville. A true Asheville classic. Multi-course experience, exceptional service.",
-      address: "20 Wall St, Asheville, NC 28801",
-      phone: "+1 828-252-4162",
-      website: "https://marketplace-restaurant.com",
+      name: "Cúrate",
+      cat: "Spanish tapas",
+      tags: ["Downtown", "Great for groups"],
+      desc: "James Beard–winner Katie Button's Spanish tapas. Shareable plates make it perfect for 8. Book far ahead. Bar seats without reservation.",
+      address: "13 Biltmore Ave, Asheville, NC 28801",
+      phone: "+1 828-239-2946",
+      website: "https://curatetapasbar.com",
       meal: "Dinner",
-      price: "$$$$"
+      price: "$$$"
     },
     {
-      name: "12 Bones Smokehouse",
-      id: "twelve-bones",
-      neighborhood: "arden",
-      mealTypes: ["lunch", "dinner"],
-      cat: "BBQ · Ribs",
-      tags: ["Local legend", "Arden", "No reservations"],
-      desc: "The famous brown-sugar or blueberry-chipotle ribs. Smoked turkey sandwich with sugar bacon & brie is underrated. Now open 11am–8pm, 7 days. Note: the original River Arts District location at 5 Riverside Dr did not reopen after Hurricane Helene (Sept 2024) — only the Arden smokehouse/taproom remains.",
-      address: "2350 Hendersonville Rd, Arden, NC 28704",
-      phone: "+1 828-687-1395",
-      website: "https://12bones.com",
+      name: "Buxton Hall Barbecue",
+      cat: "BBQ · Whole-hog",
+      tags: ["South Slope", "No reservations"],
+      desc: "Wood-smoked, pasture-raised whole-hog Eastern Carolina BBQ. Smoky pimento cheese, whole-hog pulled pork, house fried chicken sandwich are famous. Go early with the group.",
+      address: "32 Banks Ave, Asheville, NC 28801",
+      phone: "+1 828-232-7216",
+      website: "https://buxtonhall.com",
       meal: "Lunch · Dinner",
       price: "$$"
     },
     {
+      name: "12 Bones Smokehouse",
+      cat: "BBQ · Ribs",
+      tags: ["River Arts District", "Local legend"],
+      desc: "Famous brown-sugar and blueberry-chipotle ribs. Sells out — go by 1 PM. River Arts location has more character. No reservations.",
+      address: "5 Riverside Dr, Asheville, NC 28801",
+      phone: "+1 828-253-4499",
+      website: "https://12bones.com",
+      meal: "Lunch (closes early)",
+      price: "$$"
+    },
+    {
       name: "Biscuit Head",
-      id: "biscuit-head",
-      neighborhood: "west-asheville",
-      mealTypes: ["breakfast", "brunch", "lunch"],
       cat: "Breakfast · Southern",
-      tags: ["Breakfast", "Iconic Asheville"],
-      desc: "Cathouse biscuits the size of your hand, smothered in shiitake mushroom gravy or topped with fried chicken, bologna, and more. The jam bar has dozens of homemade preserves. Lines on weekends — arrive early.",
-      address: "733 Haywood Rd, Asheville, NC 28806 (West Asheville location)",
+      tags: ["Breakfast", "West Asheville close"],
+      desc: "Massive cathouse biscuits smothered in shiitake gravy or piled with fried chicken. Legendary jam bar. Line moves — arrive by 9 AM.",
+      address: "733 Haywood Rd, Asheville, NC 28806",
       phone: "+1 828-333-5145",
       website: "https://biscuitheads.com",
       meal: "Breakfast · Lunch",
       price: "$$"
     },
     {
-      name: "Stable Café (on Biltmore grounds)",
-      id: "stable-cafe",
-      neighborhood: "on-biltmore-grounds",
-      mealTypes: ["lunch"],
+      name: "Sunny Point Café",
+      cat: "Brunch · Southern",
+      tags: ["West Asheville close", "Local favorite"],
+      desc: "Beloved neighborhood brunch — shrimp & grits, Southern Benedict, huevos rancheros. 5 min from the Airbnb.",
+      address: "626 Haywood Rd, Asheville, NC 28806",
+      phone: "+1 828-252-0055",
+      website: "https://sunnypointcafe.com",
+      meal: "Breakfast · Lunch",
+      price: "$$"
+    },
+    {
+      name: "Stable Café (on Biltmore)",
       cat: "Casual · Southern",
-      tags: ["Inside Biltmore", "Convenient"],
-      desc: "Inside the original Biltmore stables — eat in a horse stall. Signature trout BLT, reliable chicken salad, classic hamburger. Open for lunch only. No reservations.",
+      tags: ["Inside Biltmore"],
+      desc: "Inside the original Biltmore stables — eat in horse stalls. Trout BLT, chicken salad, hamburger. Lunch only. No reservations.",
       address: "Biltmore Estate, Asheville",
       phone: "+1 800-411-3812",
       website: "https://www.biltmore.com/restaurants/stable-cafe/",
@@ -294,55 +340,10 @@ const TRIP_DATA = {
       price: "$$"
     },
     {
-      name: "Tupelo Honey",
-      id: "tupelo-honey",
-      neighborhood: "south-asheville",
-      mealTypes: ["breakfast", "brunch", "lunch", "dinner"],
-      cat: "Southern · Brunch",
-      tags: ["Iconic", "Brunch all day"],
-      desc: "Asheville's most famous Southern spot — huge buttery biscuits, fried chicken, shrimp & grits. Multiple locations; the South Asheville one is less of a wait than downtown.",
-      address: "1829 Hendersonville Rd, Asheville (South location)",
-      phone: "+1 828-505-7676",
-      website: "https://tupelohoneycafe.com",
-      meal: "All day",
-      price: "$$"
-    },
-    {
-      name: "Bear's Smokehouse",
-      id: "bears-smokehouse",
-      neighborhood: "south-slope",
-      mealTypes: ["lunch", "dinner"],
-      cat: "BBQ · Kansas City style",
-      tags: ["South Slope", "Brisket"],
-      desc: "KC-style with serious burnt ends and brisket. Patio is excellent. Less of a line than Buxton Hall, just as good in different ways.",
-      address: "135 Coxe Ave, Asheville, NC 28801",
-      phone: "+1 828-575-2462",
-      website: "https://www.bearsbbq.com",
-      meal: "Lunch · Dinner",
-      price: "$$"
-    },
-    {
-      name: "Sunny Point Café",
-      id: "sunny-point",
-      neighborhood: "west-asheville",
-      mealTypes: ["breakfast", "brunch", "lunch"],
-      cat: "Brunch · Southern",
-      tags: ["West Asheville", "Local favorite"],
-      desc: "Beloved neighborhood spot for breakfast & brunch — shrimp & grits, Southern Benedict, fresh-squeezed OJ. Quieter than the chain Asheville brunch spots.",
-      address: "626 Haywood Rd, Asheville, NC 28806",
-      phone: "+1 828-252-0055",
-      website: "https://sunnypointcafe.com",
-      meal: "Brunch",
-      price: "$$"
-    },
-    {
       name: "Chestnut",
-      id: "chestnut",
-      neighborhood: "downtown",
-      mealTypes: ["dinner"],
       cat: "American · Refined",
-      tags: ["Downtown", "Reliable special meal"],
-      desc: "Classic American with a creative seasonal twist. Sister restaurant of Corner Kitchen. Crowd-pleaser menu (everyone finds something) with the quality of a fine-dining spot.",
+      tags: ["Downtown", "Something for everyone"],
+      desc: "Sister to Corner Kitchen. Creative seasonal American — crowd-pleaser menu that works for a group with mixed preferences.",
       address: "48 Biltmore Ave, Asheville, NC 28801",
       phone: "+1 828-575-2667",
       website: "https://chestnutasheville.com",
@@ -350,95 +351,120 @@ const TRIP_DATA = {
       price: "$$$"
     },
     {
+      name: "Bear's Smokehouse",
+      cat: "BBQ · Kansas City",
+      tags: ["South Slope", "Burnt ends"],
+      desc: "KC-style with serious burnt ends and brisket. Great patio. Smaller lines than Buxton Hall, equally good in a different lane.",
+      address: "135 Coxe Ave, Asheville, NC 28801",
+      phone: "+1 828-575-2462",
+      website: "https://www.bearsbbq.com",
+      meal: "Lunch · Dinner",
+      price: "$$"
+    },
+    {
       name: "Pisgah Inn Restaurant",
-      id: "pisgah-inn",
-      neighborhood: "parkway",
-      mealTypes: ["breakfast", "lunch", "dinner"],
       cat: "American · Mountain views",
-      tags: ["Blue Ridge Parkway", "Seasonal Apr–Oct"],
-      desc: "Only restaurant on the NC Blue Ridge Parkway. At 5,000 ft elevation with floor-to-ceiling mountain views. Operates seasonally April 1 – October 31. Reservations via Resy up to 14 days out — book early for window tables. ⚠️ For Day 2 lunch from the Folk Art Center, the round-trip drive (~45 min each way) is tight — better as a stand-alone breakfast or dinner outing.",
-      address: "Blue Ridge Pkwy Milepost 408.6",
+      tags: ["Blue Ridge Parkway", "The View"],
+      desc: "Only restaurant on the NC Blue Ridge Parkway. 5,000 ft elevation. Floor-to-ceiling mountain views. Open Apr–Oct. Reserve for window tables.",
+      address: "Blue Ridge Pkwy MP 408.6",
       phone: "+1 828-235-8228",
-      website: "https://www.pisgahinn.com",
+      website: "https://www.pisgahinn.com/dine/",
       meal: "Breakfast · Lunch · Dinner",
       price: "$$$"
+    },
+    // Gatlinburg spots
+    {
+      name: "Peddler Steakhouse (Gatlinburg)",
+      cat: "Steakhouse · Riverside",
+      tags: ["Gatlinburg Sat", "Nicer dinner"],
+      desc: "Classic Gatlinburg steakhouse on the Little Pigeon River. Fresh salad bar, tableside steak-cutting. Reserve for 8.",
+      address: "820 River Rd, Gatlinburg, TN 37738",
+      phone: "+1 865-436-5794",
+      website: "https://peddlergatlinburg.com",
+      meal: "Dinner",
+      price: "$$$"
+    },
+    {
+      name: "Pancake Pantry (Gatlinburg)",
+      cat: "Breakfast · Iconic",
+      tags: ["Gatlinburg Sun", "Expect a line"],
+      desc: "Gatlinburg institution since 1960. 24+ kinds of pancakes. Sunday morning line is real — go early or plan the wait. Doesn't take reservations.",
+      address: "628 Parkway, Gatlinburg, TN 37738",
+      phone: "+1 865-436-4724",
+      website: "http://pancakepantry.com",
+      meal: "Breakfast · Lunch",
+      price: "$$"
+    },
+    {
+      name: "Crockett's Breakfast Camp (Gatlinburg)",
+      cat: "Breakfast · Huge portions",
+      tags: ["Gatlinburg Sun", "Family-style"],
+      desc: "Rustic mountain-cabin feel, massive breakfasts, cinnamon rolls the size of your face. Alternative to Pancake Pantry with lighter lines.",
+      address: "1103 Parkway, Gatlinburg, TN 37738",
+      phone: "+1 865-325-1403",
+      website: "https://crockettsbreakfastcamp.com",
+      meal: "Breakfast",
+      price: "$$"
     }
   ],
 
   // ===================== TREATS =====================
   treats: [
     {
-      name: "The Hop Ice Cream Café",
-      id: "hop-ice-cream",
-      neighborhood: "north-asheville",
-      mealTypes: ["dessert"],
-      cat: "Ice cream · Since 1978",
-      tags: ["Local since 1978"],
-      desc: "Handmade ice cream cafe with both dairy and vegan options. Cozy vibe with a reading nook. Two locations — Merrimon Ave and West Asheville.",
-      address: "640 Merrimon Ave, Asheville (North) · or 721 Haywood Rd (West)",
-      phone: "+1 828-254-2224",
-      website: "https://thehopicecream.com",
-      price: "$"
-    },
-    {
-      name: "Ultimate Ice Cream",
-      id: "ultimate-ice-cream",
-      neighborhood: "north-asheville",
-      mealTypes: ["dessert"],
-      cat: "Ice cream · Locally made",
-      tags: ["North Asheville"],
-      desc: "Hand-crafted ice cream on Charlotte Street since the 80s. Flavor of the month always changing. Fresh strawberry, Belgian chocolate, salted caramel — all standouts.",
-      address: "1070 Tunnel Rd, Asheville · 195 Charlotte St",
-      phone: "+1 828-252-5650",
-      website: "https://ultimateicecream.com",
+      name: "Mad Dog's Creamery & Donuts (Gatlinburg)",
+      cat: "Ice cream + donuts",
+      tags: ["★ Your pick", "Sat night", "Gatlinburg"],
+      desc: "The one-stop sweet shop in the Smokies since 2016. Hand-dipped ice cream, soft serve, donuts made fresh daily, funnel cakes, cotton candy burritos. Look for the black bear statue. Outdoor seating.",
+      address: "731 East Parkway, Gatlinburg, TN 37738",
+      phone: "+1 865-430-5757",
+      website: "https://www.maddogscreamery.com",
       price: "$"
     },
     {
       name: "Hole Doughnuts",
-      id: "hole-doughnuts",
-      neighborhood: "west-asheville",
-      mealTypes: ["breakfast", "dessert"],
       cat: "Donuts · Fried to order",
-      tags: ["West Asheville", "Best in NC"],
-      desc: "Hot doughnuts made-to-order. Sesame seed, grapefruit cardamom, almond — every batch is fresh. Locals' top pick. Lines move quickly.",
+      tags: ["★ Your pick", "West Asheville", "Close to house"],
+      desc: "Locals' pick for best in Asheville. Made-to-order, out of the fryer, into your hand. Sesame, grapefruit cardamom, glazed — nothing bad on the menu. Literally minutes from the Airbnb.",
       address: "168 Haywood Rd, Asheville, NC 28806",
       phone: "+1 828-505-3275",
       website: "https://holedoughnuts.com",
       price: "$"
     },
     {
+      name: "The Hop Ice Cream Café",
+      cat: "Ice cream · Since 1978",
+      tags: ["West Asheville close"],
+      desc: "Handmade ice cream, dairy + vegan options. Cozy vibe. West Asheville location is close to the Airbnb; also on Merrimon.",
+      address: "721 Haywood Rd, Asheville · 640 Merrimon Ave",
+      phone: "+1 828-254-2224",
+      website: "https://thehopicecream.com",
+      price: "$"
+    },
+    {
+      name: "Ultimate Ice Cream",
+      cat: "Ice cream · Locally made",
+      tags: ["North Asheville"],
+      desc: "Hand-crafted since the 80s. Rotating flavor of the month. Fresh strawberry, Belgian chocolate, salted caramel are standouts.",
+      address: "1070 Tunnel Rd · 195 Charlotte St",
+      phone: "+1 828-252-5650",
+      website: "https://ultimateicecream.com",
+      price: "$"
+    },
+    {
       name: "Vortex Doughnuts",
-      id: "vortex-doughnuts",
-      neighborhood: "south-slope",
-      mealTypes: ["breakfast", "dessert"],
       cat: "Donuts · Creative",
-      tags: ["South Slope", "Half-off Wed"],
-      desc: "Inventive doughnut flavors — honey caramel pistachio, beer-glazed pretzel, orange creamsicle. Wednesdays they're half off. Vegan & gluten-free options.",
+      tags: ["South Slope", "Wed half-off"],
+      desc: "Inventive flavors — honey caramel pistachio, beer-glazed pretzel, orange creamsicle. Wednesdays half off. Vegan + GF options.",
       address: "32 Banks Ave #106, Asheville, NC 28801",
       phone: "+1 828-552-3010",
       website: "https://vortexdoughnuts.com",
       price: "$"
     },
     {
-      name: "Ava's Donuts",
-      id: "avas-donuts",
-      neighborhood: "south-asheville",
-      mealTypes: ["breakfast", "dessert"],
-      cat: "Donuts · Classic",
-      tags: ["Biltmore Park area", "Get there early"],
-      desc: "Locals' favorite for thick, soft, sell-out-fast donuts. Plain glazed, apple fritters, classic flavors done very well. Get there in the morning — they're often gone by 11.",
-      address: "1830 Hendersonville Rd, Asheville, NC 28803",
-      phone: "+1 828-274-8003",
-      price: "$"
-    },
-    {
       name: "French Broad Chocolate Lounge",
-      id: "french-broad",
-      neighborhood: "downtown",
-      mealTypes: ["dessert"],
-      cat: "Chocolates · Desserts",
-      tags: ["Downtown", "Iconic Asheville"],
-      desc: "Asheville's most famous dessert spot. Truffles, drinking chocolate, chocolate cake, ice cream. Always a line — and worth it. Right on Pack Square.",
+      cat: "Chocolate · Desserts",
+      tags: ["Downtown", "Iconic"],
+      desc: "Asheville's most famous dessert spot. Truffles, drinking chocolate, cake, ice cream. Always a line — worth it.",
       address: "10 S Pack Square, Asheville, NC 28801",
       phone: "+1 828-252-4181",
       website: "https://frenchbroadchocolates.com",
@@ -450,545 +476,219 @@ const TRIP_DATA = {
   activities: [
     {
       name: "Biltmore Estate",
-      id: "biltmore-estate",
-      neighborhood: "on-biltmore-grounds",
       cat: "Historic · Must-do",
-      tags: ["Pre-buy tickets", "Senior discount Tue/Wed"],
-      desc: "America's largest home, 8,000-acre estate. Self-guided audio tour of the house (1.5–2 hrs), gardens & conservatory, Antler Hill Village with shuttle, dairy bar with ice cream. Plan a full day. Wheelchairs available free at entrance.",
+      tags: ["Tue or Wed", "Pre-buy online"],
+      desc: "America's largest home, 8,000-acre estate. Self-guided audio tour, gardens, Antler Hill Village with shuttle, farm animals, dairy bar. Plan a full day. Teens usually love the basement (bowling alley, kitchens).",
       address: "1 Lodge St, Asheville, NC 28803",
       phone: "+1 800-411-3812",
       website: "https://www.biltmore.com",
-      tickets: "$78–132 per adult (varies by season). Online saves $10/ticket. 65+ saves $18 on Tue/Wed for adult admission.",
-      time: "Half-day to full day",
-      best: "Tuesday — senior discount + smaller crowd than weekend"
+      tickets: "$78–132 adult (varies by season). Online saves $10/ticket. 65+ save $18 on Tue/Wed.",
+      time: "Full day",
+      best: "Tuesday — smaller crowd than weekend"
     },
     {
-      name: "Blue Ridge Parkway · Folk Art Center",
-      id: "folk-art-center",
-      neighborhood: "parkway",
-      cat: "Drive · Crafts",
-      tags: ["Free", "Easy walking", "AC inside"],
-      desc: "Milepost 382.5. Free Southern Highland Craft Guild gallery — quilts, pottery, woodturning, jewelry. Beautiful but never crowded. Easy parking. The first stop on a Parkway scenic drive day. ⚠️ Verify Blue Ridge Parkway segment is open near MP 382 before relying on this — NPS opens/closes segments dynamically post-Helene repairs.",
-      address: "Blue Ridge Pkwy MP 382.5, Asheville",
-      phone: "+1 828-298-7928",
-      website: "https://southernhighlandguild.org",
-      tickets: "Free",
-      time: "1 hour"
+      name: "Sliding Rock (Pisgah National Forest)",
+      cat: "Adventure · Natural waterslide",
+      tags: ["Great for teens", "Cold water"],
+      desc: "60-ft natural granite waterslide with a pool at the bottom. Lifeguards on duty in summer. Bring swimsuits, water shoes, towels. About 45 min from the Airbnb.",
+      address: "Sliding Rock Rd, Pisgah Forest, NC 28768",
+      tickets: "$5/person parking",
+      time: "1.5–2 hours",
+      best: "Wednesday's Parkway day"
+    },
+    {
+      name: "French Broad River Tubing",
+      cat: "Adventure · Lazy river",
+      tags: ["Great for teens", "Great for group"],
+      desc: "2–3 hour lazy float down the French Broad. Zen Tubing and Asheville Adventure Center both run trips. Book same-day or day-before. Bring sunscreen, water shoes, and dry bags for phones.",
+      website: "https://zentubing.com",
+      tickets: "~$20–25/person incl. shuttle",
+      time: "3 hours w/ shuttle",
+      best: "Warm afternoon (Thu)"
+    },
+    {
+      name: "Chimney Rock State Park",
+      cat: "Views · Easy hike",
+      tags: ["Great for teens", "45 min drive"],
+      desc: "315-ft elevator to Chimney Rock summit for panoramic views. Hickory Nut Falls trail (easy-moderate, 1.5 mi RT) leads to a 404-ft waterfall. Views of Lake Lure.",
+      address: "431 Main St, Chimney Rock, NC 28720",
+      phone: "+1 828-625-9611",
+      website: "https://www.chimneyrockpark.com",
+      tickets: "$17 adult, $8 youth (5-15)",
+      time: "3–4 hours w/ drive"
     },
     {
       name: "Blue Ridge Parkway · Scenic Drive",
-      id: "blue-ridge-parkway",
-      neighborhood: "parkway",
       cat: "Drive · Free",
-      tags: ["Free", "Stay in the car if needed"],
-      desc: "The 114-mile section through Asheville is fully open after Helene repairs. From the Folk Art Center, drive south toward Mt Pisgah (MP 408) and stop at overlooks. Easy on Mom — just pull off and look.",
+      tags: ["Free", "Any day"],
+      desc: "114 miles around Asheville are fully open after Helene repairs. From Asheville, drive south toward Mt Pisgah (MP 408) for the best overlooks and Pisgah Inn.",
       tickets: "Free",
-      time: "1–3 hours, your pace",
-      best: "Morning · less haze, less traffic"
+      time: "1–3 hours"
     },
     {
-      name: "North Carolina Arboretum",
-      id: "nc-arboretum",
-      neighborhood: "south-asheville",
-      cat: "Gardens · Easy walking",
-      tags: ["Paved paths", "Shuttle available"],
-      desc: "434 acres with bonsai garden (a real highlight), quilt garden, easy paved trails. Shuttle service for those who can't walk far. Beautiful in summer. Near Parkway entrance. Open 8am–9pm. Note: a portion of the Bonsai Garden has construction-related access changes starting April — confirm full access before relying on it.",
-      address: "20 Frederick Law Olmsted Way, Asheville, NC 28806",
-      phone: "+1 828-665-2492",
-      website: "https://www.ncarboretum.org",
-      tickets: "Parking $20/car (admission included)",
-      time: "1.5–2 hours"
+      name: "Looking Glass Falls",
+      cat: "Waterfall · Roadside",
+      tags: ["Everyone can see", "Free"],
+      desc: "60-ft roadside waterfall on US-276 near Sliding Rock. See it from the parking lot, or walk down for a close-up. No hike needed.",
+      address: "US-276, Pisgah Forest, NC",
+      tickets: "Free",
+      time: "20 min"
     },
     {
-      name: "WNC Nature Center",
-      id: "wnc-nature-center",
-      neighborhood: "east-asheville",
-      cat: "Wildlife · Easy paths",
-      tags: ["AZA reciprocal?", "Local animals"],
-      desc: "Small but well-done — wolves, cougars, otters, red wolves, farm animals. Paved easy paths. About 90 min is enough. ⚠️ The 50% off w/ Cincinnati Zoo membership card (AZA reciprocal) is *not* currently advertised on their site — call 828-259-8092 to confirm before relying on the discount. Bring the membership card either way.",
-      address: "75 Gashes Creek Rd, Asheville, NC 28805",
-      phone: "+1 828-259-8092",
-      website: "https://wildwnc.org",
-      tickets: "$13.95 adult / $12.95 senior 65+ · ask about Cincinnati Zoo reciprocal at the gate",
+      name: "River Arts District",
+      cat: "Art · Walkable",
+      tags: ["Downtown-ish", "Kid + adult friendly"],
+      desc: "Working artist studios in old industrial buildings. Murals, glassblowing, pottery, printmaking demos. Wilma Dykeman Riverwalk connects the buildings. Grab coffee at Ultra.",
+      address: "River Arts District, Asheville",
+      tickets: "Free (individual studios vary)",
       time: "1.5 hours"
     },
     {
-      name: "Black Mountain · downtown stroll",
-      id: "black-mountain-village",
-      neighborhood: "black-mountain",
-      cat: "Shopping · Small town",
-      tags: ["Antiques", "15 min east"],
-      desc: "Charming walkable downtown 15 miles east of Asheville. Antique shops (Key City Antiques is the standout), galleries, coffee. Easy to combine with a Wednesday morning departure stop on the way to Hilton Head.",
+      name: "Grove Park Inn (drive-by + terrace)",
+      cat: "Historic · Free lobby",
+      tags: ["Sunset drinks", "Easy"],
+      desc: "Historic mountain hotel. The lobby has massive stone fireplaces you can just walk into. Sunset Terrace is open to non-guests — order drinks/dessert for the view. A real Asheville moment.",
+      address: "290 Macon Ave, Asheville, NC 28804",
+      phone: "+1 828-252-2711",
+      tickets: "Free lobby · drinks/food for purchase",
+      time: "1 hour"
+    },
+    {
+      name: "Black Mountain village",
+      cat: "Small-town stroll",
+      tags: ["15 min east", "Antiques"],
+      desc: "Charming walkable downtown 15 miles east. Antique shops, galleries, coffee. Easy day-trip stop. Key City Antiques is a standout.",
       address: "Downtown Black Mountain, NC",
       website: "https://visitblackmountainnc.org",
       tickets: "Free",
       time: "1–2 hours"
     },
     {
-      name: "Weaverville · small-town antiquing",
-      id: "weaverville",
-      neighborhood: "weaverville",
-      cat: "Shopping · Small town",
-      tags: ["Antiques", "Day-trip option"],
-      desc: "15 min north of Asheville. Small antique district + tea room + bakery. Less polished than Black Mountain but charming. Skip if you do Black Mountain.",
-      address: "Main St, Weaverville, NC",
-      time: "1 hour"
-    },
-    {
       name: "Antique Tobacco Barn",
-      id: "antique-tobacco-barn",
-      neighborhood: "east-asheville",
       cat: "Shopping · Antiques",
-      tags: ["Asheville", "Cavernous"],
-      desc: "77,000+ sq ft of antiques in a historic tobacco warehouse — Asheville's biggest antique store. Plenty of seating, accessible, can browse for an hour or a whole afternoon.",
+      tags: ["Huge", "Weather-proof"],
+      desc: "77,000+ sq ft of antiques in a historic tobacco warehouse — Asheville's biggest. Easy to lose an hour or an afternoon.",
       address: "75 Swannanoa River Rd, Asheville, NC 28805",
       phone: "+1 828-252-7291",
       website: "https://atbarn.com",
       tickets: "Free",
-      time: "1 hour"
-    },
-    {
-      name: "Biltmore Village shops",
-      id: "biltmore-village-shops",
-      neighborhood: "biltmore-village",
-      cat: "Shopping · Walk from hotel",
-      tags: ["Walkable", "Quaint"],
-      desc: "Cobblestone streets, ~30 small shops, art galleries, boutiques. Village Antiques (25,000 sq ft of European antiques) is here. Easy walking, plenty of benches.",
-      address: "Biltmore Village, Asheville",
-      tickets: "Free",
       time: "1–2 hours"
     },
     {
-      name: "Grove Park Inn (drive-by + lobby)",
-      id: "grove-park-inn",
-      neighborhood: "north-asheville",
-      cat: "Historic hotel · Easy stop",
-      tags: ["Free to visit", "Lobby tour"],
-      desc: "Historic mountain hotel — the lobby is a sight in itself with massive stone fireplaces. Sit on the Sunset Terrace at sunset (open to non-guests). Easy walk from car to lobby.",
-      address: "290 Macon Ave, Asheville, NC 28804",
-      phone: "+1 828-252-2711",
-      tickets: "Free to enter lobby/terrace · drinks/snacks for purchase",
-      time: "45 min"
+      name: "WNC Nature Center",
+      cat: "Wildlife · Easy paths",
+      tags: ["Kids OK", "Local wildlife"],
+      desc: "Wolves, cougars, otters, red wolves, farm animals. Paved easy paths. ~90 min. If any of the group has a Cincinnati Zoo membership, admission is 50% off.",
+      address: "75 Gashes Creek Rd, Asheville, NC 28805",
+      phone: "+1 828-259-8092",
+      website: "https://wildwnc.org",
+      tickets: "$18.95 adult / $17.95 senior · 50% off w/ Cincinnati Zoo card",
+      time: "1.5 hours"
+    },
+    // Gatlinburg-side activities
+    {
+      name: "Ober Mountain (Gatlinburg)",
+      cat: "Amusement · Chairlift",
+      tags: ["Sat evening", "Great for teens"],
+      desc: "Aerial tramway from downtown Gatlinburg up the mountain. Alpine coaster, ice skating (indoors, year-round), scenic chairlift, wildlife encounters. Perfect Saturday-evening activity.",
+      address: "1339 Ski Mountain Rd, Gatlinburg, TN 37738",
+      phone: "+1 865-436-5423",
+      website: "https://obermountain.com",
+      tickets: "Varies · buy per-activity or combo",
+      time: "2–3 hours"
+    },
+    {
+      name: "Gatlinburg SkyLift Park",
+      cat: "Views · Suspension bridge",
+      tags: ["Sat evening", "Iconic"],
+      desc: "Chairlift up to a mountain-top park with SkyBridge — longest pedestrian suspension bridge in North America. Glass panels in the middle. Views for miles.",
+      address: "765 Parkway, Gatlinburg, TN 37738",
+      phone: "+1 865-436-4307",
+      website: "https://gatlinburgskylift.com",
+      tickets: "~$36 adult · $25 youth",
+      time: "1.5 hours"
+    },
+    {
+      name: "Ripley's Aquarium of the Smokies (Gatlinburg)",
+      cat: "Aquarium · All-weather",
+      tags: ["Sat rain plan", "Kid-friendly"],
+      desc: "Well-reviewed aquarium in downtown Gatlinburg. Shark tunnel, penguins, touch tank, sting ray bay. Solid rainy-Saturday alternative. Buy timed tickets online to skip lines.",
+      address: "88 River Rd, Gatlinburg, TN 37738",
+      phone: "+1 865-430-8808",
+      website: "https://www.ripleyaquariums.com/gatlinburg",
+      tickets: "~$45 adult · $28 youth",
+      time: "2 hours"
     }
   ],
 
   // ===================== BUDGET =====================
   budget: [
-    { category: "Lodging (AC Hotel Biltmore Village)", note: "2 rooms × 3 nights, est. base + tax", amount: 575 },
-    { category: "Biltmore tickets", note: "4 adults · 1 senior discount (Tue) · pre-bought online", amount: 360 },
-    { category: "WNC Nature Center", note: "50% off w/ Cincinnati Zoo card", amount: 40 },
-    { category: "NC Arboretum parking", note: "$20 day pass per car", amount: 20 },
-    { category: "Dinners (3)", note: "Avg. $250–300 for 4 incl tip", amount: 825 },
-    { category: "Breakfasts/lunches (4 days)", note: "Mix of hotel & casual spots", amount: 280 },
-    { category: "Ice cream / donuts / coffee", note: "Daily treat fund", amount: 80 },
-    { category: "Gas (round trip from Cincinnati)", note: "~1,200 mi total · minivan", amount: 220 }
+    { category: "Airbnb (Asheville, 6 nights)", note: "Already booked", amount: null, booked: true },
+    { category: "Gatlinburg hotel (Sat)", note: "Est. 4 rooms × 1 night, mid-tier", amount: 700 },
+    { category: "Biltmore tickets", note: "8 people × ~$95 avg (online)", amount: 760 },
+    { category: "Sliding Rock + Chimney Rock", note: "Parking + admission", amount: 150 },
+    { category: "French Broad tubing", note: "8 × ~$22", amount: 175 },
+    { category: "Gatlinburg extras (Ober, SkyLift, aquarium)", note: "Pick 1-2 for Sat", amount: 250 },
+    { category: "Dinners out (5-6 nights)", note: "Group of 8, mix of casual + nicer", amount: 2000 },
+    { category: "Breakfasts / lunches", note: "Mix of house + spots", amount: 500 },
+    { category: "Groceries + grill supplies", note: "Airbnb kitchen for the week", amount: 350 },
+    { category: "Ice cream / donuts / coffee", note: "Trip essential", amount: 200 },
+    { category: "Gas (round trip)", note: "~1,500 mi total, 2 vehicles est.", amount: 350 }
   ],
 
   // ===================== PACKING =====================
   packing: {
     "Essentials": [
-      { item: "ID / driver's license", note: "Required to check in" },
-      { item: "Cash/credit cards", note: "Some BBQ spots are cash-friendly" },
-      { item: "Phone chargers (4)", note: "One per person" },
-      { item: "Car charger / power bank", note: "Long drive day" },
-      { item: "Medications (especially mom-in-law's)", note: "Plus a 2-day backup" },
-      { item: "Reading glasses", note: "Easy to forget" },
-      { item: "Insurance cards", note: "All four" }
+      { item: "IDs (all 8)", note: "Required to check in at hotels" },
+      { item: "Cash + credit cards", note: "Some BBQ spots are cash-friendly" },
+      { item: "Phone chargers + car chargers", note: "Long drive days" },
+      { item: "Medications", note: "Plus a 2-day backup for anyone on daily meds" },
+      { item: "Insurance cards", note: "All 8" },
+      { item: "Airbnb confirmation (HMEQTT4FZM)", note: "Screenshot for offline" },
+      { item: "Gatlinburg hotel confirmation", note: "Once booked" },
+      { item: "Biltmore tickets (pre-bought)", note: "Save to phone wallet" }
     ],
     "Clothes (warm summer)": [
-      { item: "T-shirts/blouses (3–4)", note: "Light, breathable" },
-      { item: "Shorts or comfortable pants (2–3)", note: "Lots of walking days" },
-      { item: "One nice dinner outfit", note: "For Rhubarb or Market Place" },
-      { item: "Light jacket / cardigan", note: "Mornings can be 60°F" },
-      { item: "Swimsuits", note: "Hotel pool + hot tub" },
+      { item: "T-shirts (5-6)", note: "Light, breathable" },
+      { item: "Shorts / comfortable pants (3-4)", note: "" },
+      { item: "One nicer outfit each", note: "For Rhubarb, Cúrate, or Peddler Steakhouse" },
+      { item: "Light jacket / hoodie", note: "Mornings can be 60°F in Asheville" },
+      { item: "Swimsuits", note: "Hotel pool + Sliding Rock + tubing" },
       { item: "Pajamas", note: "" },
-      { item: "Walking shoes (broken-in!)", note: "Biltmore day = lots of steps" },
-      { item: "Sandals", note: "" }
+      { item: "Walking shoes (broken-in)", note: "Biltmore = a lot of steps" },
+      { item: "Sandals or flip-flops", note: "" },
+      { item: "Water shoes", note: "Sliding Rock is granite + cold water" }
     ],
     "Toiletries & health": [
-      { item: "Sunscreen (SPF 30+)", note: "Easy to burn at elevation" },
-      { item: "Bug spray", note: "Optional, depends on activity" },
+      { item: "Sunscreen (SPF 30+)", note: "River tubing = full sun" },
+      { item: "Bug spray", note: "Hiking + evenings on the porch" },
       { item: "Allergy meds", note: "Pollen season" },
       { item: "Ibuprofen / Tylenol", note: "" },
       { item: "Hand sanitizer", note: "" },
-      { item: "Lip balm", note: "Drier in mountains" }
+      { item: "Lip balm", note: "Drier in the mountains" }
     ],
-    "For the trip": [
-      { item: "Reusable water bottles (4)", note: "Refill stations everywhere" },
-      { item: "Sunglasses", note: "" },
-      { item: "Camera or phone for photos", note: "" },
-      { item: "Board game or card deck", note: "For the hotel hangout room" },
-      { item: "Snacks for the drive", note: "Trail mix, fruit, jerky" },
-      { item: "Reusable shopping bag", note: "For antique finds" }
-    ],
-    "Documents": [
-      { item: "Hotel reservation confirmations", note: "Screenshot for offline" },
-      { item: "Biltmore tickets (pre-bought)", note: "Save to phone wallet" },
-      { item: "Cincinnati Zoo membership card", note: "50% off WNC Nature Center" },
-      { item: "Hilton Head check-in info", note: "For Wednesday arrival" }
+    "For the group": [
+      { item: "Reusable water bottles (8)", note: "Refill everywhere" },
+      { item: "Sunglasses (+ straps for tubing)", note: "" },
+      { item: "Cameras / phones", note: "The Parkway is a photo trip" },
+      { item: "Board games or cards", note: "Airbnb evenings" },
+      { item: "Cheap dry bag for tubing", note: "For phones on the river" },
+      { item: "Cooler + snacks for the drive", note: "Trail mix, fruit, jerky" },
+      { item: "Reusable bags", note: "Antique / grocery runs" }
     ]
   },
 
   // ===================== INFO =====================
-  alzTips: [
-    { strong: "Mornings are best", text: "Plan main activities before 1 PM. Afternoon energy fades, evenings can bring confusion ('sundowning'). Build in rest after lunch every day." },
-    { strong: "Familiar routines help", text: "Same wake-up coffee. Same breakfast spot if possible. Predictability lowers anxiety." },
-    { strong: "Skip crowds when you can", text: "Biltmore at 9 AM (small crowd) is way easier than 1 PM. Farmers market = avoid. Grocery store = limit." },
-    { strong: "Always know the nearest bathroom", text: "Mom may need them suddenly. Plan stops accordingly." },
-    { strong: "Bring photo ID + medical info card", text: "If she wanders or gets disoriented, this is critical. Include emergency contact, meds, diagnosis." },
-    { strong: "Have 'her chair' ready", text: "A folding camp chair or wheelchair in the minivan is golden for unplanned waits or long museum lines." },
-    { strong: "Hydration", text: "Older adults dehydrate fast. Offer water every 30–60 min, even if she says no." },
-    { strong: "Validate, don't correct", text: "If she forgets a name or asks the same question, answer kindly. Don't say 'I just told you.'" },
-    { strong: "End days early", text: "Try to be back at the hotel by 5–6 PM. A bath, a quiet evening, and an early bedtime work wonders." }
-  ],
-
   contacts: [
     { name: "Emergency", number: "911" },
-    { name: "Mission Hospital (Asheville)", number: "+1 828-213-1111", note: "Major hospital, 5 min from Biltmore Village. ER 24/7." },
-    { name: "Asheville Urgent Care - Biltmore", number: "+1 828-274-2700", note: "MyCare AVL — Biltmore Park location" },
-    { name: "CVS Pharmacy (Biltmore Village)", number: "+1 828-274-1841", note: "5 Brook St, Asheville, NC 28803" },
-    { name: "Alzheimer's Association Helpline", number: "+1 800-272-3900", note: "24/7 free support if needed" },
-    { name: "Biltmore Estate guest services", number: "+1 800-411-3812", note: "" },
-    { name: "AC Hotel front desk", number: "+1 828-258-2522", note: "Or whichever hotel you book" }
+    { name: "Mission Hospital (Asheville)", number: "+1 828-213-1111", note: "Major hospital + ER 24/7. About 15 min from West Asheville." },
+    { name: "Asheville Urgent Care - Biltmore", number: "+1 828-274-2700", note: "MyCare AVL — Biltmore Park location." },
+    { name: "LeConte Medical Center (Sevierville, TN)", number: "+1 865-446-7000", note: "Nearest ER to Gatlinburg — about 15 min north." },
+    { name: "CVS Pharmacy (West Asheville)", number: "+1 828-252-8040", note: "" },
+    { name: "Airbnb Support", number: "+1 855-424-7262", note: "24/7 if anything goes sideways with the booking." },
+    { name: "Biltmore Estate", number: "+1 800-411-3812", note: "" }
   ]
 };
-
-/* ============================================================
-   PROXIMITY MODEL
-   Hand-authored adjacency for each lodging neighborhood.
-   - walkableTo: neighborhoods reachable on foot from this hotel
-   - driveMinutesTo: approximate one-way driving minutes (rounded)
-   Used to label every itinerary slot's "how do we get there" context
-   and to sort the restaurant picker (walk first, then drive ascending).
-   ============================================================ */
-
-const NEIGHBORHOOD_GRAPH = {
-  "biltmore-village": {
-    walkableTo: ["biltmore-village"],
-    driveMinutesTo: {
-      "downtown": 8, "west-asheville": 12, "south-asheville": 10,
-      "east-asheville": 10, "river-arts": 6, "south-slope": 7,
-      "north-asheville": 12, "on-biltmore-grounds": 5,
-      "arden": 15, "black-mountain": 18, "parkway": 15,
-      "weaverville": 22
-    }
-  },
-  "east-asheville": {
-    walkableTo: ["east-asheville"],
-    driveMinutesTo: {
-      "biltmore-village": 7, "downtown": 8, "west-asheville": 15,
-      "south-asheville": 12, "river-arts": 8, "south-slope": 8,
-      "north-asheville": 10, "on-biltmore-grounds": 9,
-      "arden": 17, "black-mountain": 15, "parkway": 12,
-      "weaverville": 18
-    }
-  },
-  "arden": {
-    walkableTo: ["arden"],
-    driveMinutesTo: {
-      "biltmore-village": 18, "downtown": 22, "west-asheville": 25,
-      "south-asheville": 15, "east-asheville": 22, "river-arts": 22,
-      "south-slope": 22, "north-asheville": 25,
-      "on-biltmore-grounds": 18, "black-mountain": 30,
-      "parkway": 18, "weaverville": 30
-    }
-  }
-};
-
-// Returns { kind: 'walk'|'drive'|'unknown', minutes, label }
-// for traveling from a hotel to an item's neighborhood.
-function proximity(hotelId, itemOrNeighborhood) {
-  const itemHood = typeof itemOrNeighborhood === 'string'
-    ? itemOrNeighborhood
-    : itemOrNeighborhood?.neighborhood;
-  if (!hotelId || !itemHood) {
-    return { kind: 'unknown', minutes: null, label: '' };
-  }
-  const hotel = lookupRef('hotel:' + hotelId);
-  if (!hotel || !hotel.neighborhood) {
-    return { kind: 'unknown', minutes: null, label: '' };
-  }
-  if (hotel.neighborhood === itemHood) {
-    return { kind: 'walk', minutes: 2, label: 'Right at your hotel' };
-  }
-  const graph = NEIGHBORHOOD_GRAPH[hotel.neighborhood];
-  if (!graph) {
-    return { kind: 'drive', minutes: 10, label: '~10 min drive' };
-  }
-  if (graph.walkableTo?.includes(itemHood)) {
-    return { kind: 'walk', minutes: 5, label: 'Walk from your hotel' };
-  }
-  const mins = graph.driveMinutesTo?.[itemHood];
-  if (typeof mins === 'number') {
-    return { kind: 'drive', minutes: mins, label: `${mins} min drive` };
-  }
-  return { kind: 'drive', minutes: 10, label: '~10 min drive' };
-}
-
-// Lookup helpers — resolve a catalog reference string like
-// "restaurant:corner-kitchen" → the actual record.
-function lookupRef(ref) {
-  if (!ref || typeof ref !== 'string') return null;
-  const [kind, id] = ref.split(':');
-  const table = {
-    restaurant: TRIP_DATA.restaurants,
-    treat: TRIP_DATA.treats,
-    activity: TRIP_DATA.activities,
-    hotel: [...TRIP_DATA.lodging, ...(STORE?.state?.plan?.customHotels || [])]
-  }[kind];
-  return table?.find(r => r.id === id) || null;
-}
-
-/* ============================================================
-   SLOT MODEL — dynamic itinerary
-
-   A slot is one row in the day's timeline. Shape:
-   {
-     id:          'd1-1900',        // stable, day-time based
-     day:         1..4,
-     time:        '7:00 PM',        // human-readable, editable
-     durationMin: 90,               // soft hint (not auto-enforced)
-     locked:      false,            // anchors; not shifted by cascade
-     kind:        'meal'|'activity'|'drive'|'rest'|'fixed',
-     mealType?:   'breakfast'|'brunch'|'lunch'|'dinner'|'dessert',
-     ref?:        'restaurant:corner-kitchen',  // catalog ref
-     title?:      string,           // override (or for kinds without ref)
-     subtitle?:   string,
-     detail?:     string,
-     note?:       string            // small callout below detail
-   }
-
-   Editing an unlocked slot's time shifts all later, unlocked, same-day
-   slots by the delta. Locked slots anchor and don't move.
-   ============================================================ */
-
-const SEED_SLOTS = [
-  // ---------- DAY 1 · Sun Jun 28 · Drive Down & Settle In ----------
-  { id: 'd1-1130', day: 1, time: '11:30 AM', durationMin: 30, locked: false,
-    kind: 'fixed', title: 'Church',
-    detail: 'Service in Waynesville. Light brunch or coffee on the way out.' },
-  { id: 'd1-1200', day: 1, time: '12:00 PM', durationMin: 135, locked: true,
-    kind: 'drive', title: 'Depart West Chester',
-    detail: 'From Beckett Ridge area. I-75 South. Bathroom now, snacks loaded.' },
-  { id: 'd1-1415', day: 1, time: '2:15 PM', durationMin: 45, locked: false,
-    kind: 'fixed', title: 'Lunch stop · Corbin, KY',
-    detail: 'Sanders Café (original KFC, fun) or Dixie Café. ~30–45 min stop.' },
-  { id: 'd1-1730', day: 1, time: '5:30 PM', durationMin: 90, locked: true,
-    kind: 'fixed', title: 'Arrive Biltmore Village',
-    detail: 'Check in. Unpack a little, freshen up, walk the village.' },
-  { id: 'd1-1900', day: 1, time: '7:00 PM', durationMin: 90, locked: false,
-    kind: 'meal', mealType: 'dinner', ref: 'restaurant:corner-kitchen',
-    note: 'Reserve early — this is the best spot in walking distance.' },
-  { id: 'd1-2100', day: 1, time: '9:00 PM', durationMin: 60, locked: false,
-    kind: 'rest', title: 'Hot tub & turn in',
-    detail: 'Long drive done. Hot tub at the hotel or evening porch. Early to bed — Biltmore tomorrow.' },
-
-  // ---------- DAY 2 · Mon Jun 29 · Blue Ridge Parkway Day ----------
-  { id: 'd2-0800', day: 2, time: '8:00 AM', durationMin: 60, locked: false,
-    kind: 'meal', mealType: 'breakfast', ref: 'restaurant:biscuit-head',
-    note: 'Beat the line by arriving by 8.' },
-  { id: 'd2-0930', day: 2, time: '9:30 AM', durationMin: 90, locked: false,
-    kind: 'activity', ref: 'activity:folk-art-center',
-    note: 'Great accessibility for mom-in-law. Quiet morning crowd.' },
-  { id: 'd2-1100', day: 2, time: '11:00 AM', durationMin: 90, locked: false,
-    kind: 'activity', ref: 'activity:blue-ridge-parkway',
-    title: 'Blue Ridge Parkway scenic drive south',
-    detail: 'From the Folk Art Center, drive south. Pull off at the overlooks. Pisgah views around milepost 408.' },
-  { id: 'd2-1230', day: 2, time: '12:30 PM', durationMin: 60, locked: false,
-    kind: 'meal', mealType: 'lunch', ref: null,
-    note: 'Pisgah Inn lunch is geographically tight — pick a lunch spot back in town. Tupelo Honey South is closest to the Arboretum.' },
-  { id: 'd2-1430', day: 2, time: '2:30 PM', durationMin: 120, locked: false,
-    kind: 'activity', ref: 'activity:nc-arboretum',
-    note: 'Free shuttle around the gardens — easy on the legs.' },
-  { id: 'd2-1700', day: 2, time: '5:00 PM', durationMin: 90, locked: false,
-    kind: 'rest', title: 'Back to the hotel · rest',
-    detail: "Hot tub, balcony, board games. Get mom-in-law's afternoon rest in." },
-  { id: 'd2-1830', day: 2, time: '6:30 PM', durationMin: 90, locked: false,
-    kind: 'meal', mealType: 'dinner', ref: 'restaurant:bears-smokehouse',
-    note: 'KC-style BBQ in the South Slope. Buxton Hall (the original pick) closed permanently — Bear\'s is the closest like-for-like sub.' },
-  { id: 'd2-2030', day: 2, time: '8:30 PM', durationMin: 45, locked: false,
-    kind: 'meal', mealType: 'dessert', ref: 'treat:hop-ice-cream' },
-
-  // ---------- DAY 3 · Tue Jun 30 · Biltmore Estate Day ----------
-  { id: 'd3-0730', day: 3, time: '7:30 AM', durationMin: 60, locked: false,
-    kind: 'rest', title: 'Breakfast at the hotel',
-    detail: "Light breakfast — there's a lot of walking today. Coffee, bagels, fruit." },
-  { id: 'd3-0900', day: 3, time: '9:00 AM', durationMin: 30, locked: true,
-    kind: 'activity', ref: 'activity:biltmore-estate',
-    title: 'Arrive Biltmore · check in at Reception',
-    detail: 'Pre-buy tickets online (saves $10/each). Pick House & Grounds with audio tour. Tuesdays = $18 off for 65+ on adult admission — Mom can save here.',
-    note: 'Wheelchairs are free at the entrance — even if not using one full-time, it\'s a smart fallback for Mom.' },
-  { id: 'd3-0930', day: 3, time: '9:30 AM', durationMin: 120, locked: false,
-    kind: 'fixed', title: 'Biltmore House tour',
-    detail: 'Self-guided with audio tour (1.5–2 hrs). Only the first 2 floors are wheelchair-accessible — the basement & upper floors require stairs. Take the elevator where offered. Plenty of benches.',
-    note: 'Go early — first tour times have the smallest crowds.' },
-  { id: 'd3-1130', day: 3, time: '11:30 AM', durationMin: 60, locked: false,
-    kind: 'fixed', title: 'Gardens & Conservatory',
-    detail: 'Easy garden paths. The Conservatory has benches, orchids, and great photo spots. Skip strenuous trails.' },
-  { id: 'd3-1230', day: 3, time: '12:30 PM', durationMin: 90, locked: false,
-    kind: 'meal', mealType: 'lunch', ref: 'restaurant:stable-cafe' },
-  { id: 'd3-1400', day: 3, time: '2:00 PM', durationMin: 120, locked: false,
-    kind: 'fixed', title: 'Antler Hill Village',
-    detail: 'Free shuttle from the House parking lot. Browse the shops, the Outdoor Adventure Center, the Farm (animals to see). The dairy bar has ice cream — yes please.',
-    note: 'Easy, sit-down friendly. Park in shade.' },
-  { id: 'd3-1600', day: 3, time: '4:00 PM', durationMin: 180, locked: false,
-    kind: 'rest', title: 'Back to hotel · rest before dinner',
-    detail: 'Pool, hot tub, balcony time. Long day on the feet.' },
-  { id: 'd3-1900', day: 3, time: '7:00 PM', durationMin: 120, locked: false,
-    kind: 'meal', mealType: 'dinner', ref: 'restaurant:chestnut',
-    note: 'Sister restaurant to Corner Kitchen — open Tuesday. (Rhubarb is closed Tue/Wed, so we swapped from the original pick.) Reservations via Resy.' },
-  { id: 'd3-2100', day: 3, time: '9:00 PM', durationMin: 30, locked: false,
-    kind: 'meal', mealType: 'dessert', ref: 'treat:hole-doughnuts' },
-
-  // ---------- DAY 4 · Wed Jul 1 · Slow Morning & Onward ----------
-  { id: 'd4-0800', day: 4, time: '8:00 AM', durationMin: 60, locked: false,
-    kind: 'rest', title: 'Breakfast at hotel · pack up',
-    detail: 'Light packing-day breakfast.' },
-  { id: 'd4-0900', day: 4, time: '9:00 AM', durationMin: 90, locked: false,
-    kind: 'activity', ref: 'activity:black-mountain-village',
-    note: 'Optional — skip if everyone is ready to push for Hilton Head.' },
-  { id: 'd4-1030', day: 4, time: '10:30 AM', durationMin: 120, locked: true,
-    kind: 'drive', title: 'Roll south toward Hilton Head',
-    detail: 'Back on I-26 E → I-95 S → 278 E. About 5 hrs to Hilton Head with one lunch stop.' },
-  { id: 'd4-1230', day: 4, time: '12:30 PM', durationMin: 45, locked: false,
-    kind: 'fixed', title: 'Lunch · Columbia, SC area',
-    detail: "Lizard's Thicket (local Southern chain done right) or pick on the fly. 30 min stop." },
-  { id: 'd4-1530', day: 4, time: '3:30 PM', durationMin: 60, locked: true,
-    kind: 'fixed', title: 'Arrive Hilton Head!',
-    detail: 'Check in (most properties 3–4 PM). Toes in the sand by sunset.' }
-];
-
-// Trip-day calendar — maps each itinerary day to its real date.
-const TRIP_DAY_DATES = { 1: '2026-06-28', 2: '2026-06-29', 3: '2026-06-30', 4: '2026-07-01' };
-
-// Returns the current trip day number (1–4) if today is within the trip,
-// else null. Accepts an optional Date for testing.
-function currentTripDay(now = new Date()) {
-  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-  for (const [day, date] of Object.entries(TRIP_DAY_DATES)) {
-    if (date === today) return Number(day);
-  }
-  return null;
-}
-
-// Given a day's slots and the current minutes-since-midnight, return the id
-// of the "now or next" slot (the in-progress one, or the next upcoming).
-function nowNextSlotId(daySlots, nowMin) {
-  let inProgress = null;
-  for (let i = 0; i < daySlots.length; i++) {
-    const start = timeToMinutes(daySlots[i].time);
-    if (start <= nowMin) {
-      inProgress = daySlots[i].id; // keep latest started
-    } else {
-      // first future slot — if nothing started yet, this is "next"
-      return inProgress || daySlots[i].id;
-    }
-  }
-  return inProgress; // after the last slot's start → that's the current focus
-}
-
-// Time helpers — convert between "7:00 PM" and minutes-since-midnight.
-function timeToMinutes(t) {
-  const m = (t || '').match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
-  if (!m) return 0;
-  let h = parseInt(m[1], 10);
-  const min = parseInt(m[2], 10);
-  if (m[3].toUpperCase() === 'PM' && h !== 12) h += 12;
-  if (m[3].toUpperCase() === 'AM' && h === 12) h = 0;
-  return h * 60 + min;
-}
-function minutesToTime(mins) {
-  mins = ((Math.round(mins) % 1440) + 1440) % 1440;
-  let h = Math.floor(mins / 60);
-  const m = mins % 60;
-  const ampm = h >= 12 ? 'PM' : 'AM';
-  h = h % 12 || 12;
-  return `${h}:${String(m).padStart(2, '0')} ${ampm}`;
-}
-function timeToHM(t) { // for <input type="time"> value
-  const m = timeToMinutes(t);
-  return `${String(Math.floor(m/60)).padStart(2,'0')}:${String(m%60).padStart(2,'0')}`;
-}
-function hmToTime(hm) { // "19:30" → "7:30 PM"
-  const [h, m] = hm.split(':').map(Number);
-  return minutesToTime(h * 60 + m);
-}
-
-// Resolve a slot into the data the renderer needs.
-function resolveSlot(slot, hotelId) {
-  const ref = lookupRef(slot.ref);
-  const prox = ref ? proximity(hotelId, ref) : null;
-  const needsAssignment = slot.kind === 'meal' && !ref;
-
-  let title = slot.title;
-  if (!title && ref) title = ref.name;
-  if (!title && needsAssignment) {
-    const label = (slot.mealType || 'meal').replace(/^./, c => c.toUpperCase());
-    title = `Tap to choose ${label}`;
-  }
-  if (!title) title = '—';
-
-  return {
-    slot,
-    ref,
-    title,
-    subtitle: ref?.cat || ref?.tagline || '',
-    body: slot.detail || ref?.desc || '',
-    note: slot.note || '',
-    proximityLabel: prox?.label || '',
-    proximityKind: prox?.kind || 'unknown',
-    needsAssignment
-  };
-}
-
-// Cascade: shift all later, unlocked, same-day slots by delta minutes.
-// Returns { conflicts: [slotIds] } where a shifted slot would land at or
-// after a locked slot's time.
-function shiftSlotsAfter(slotId, deltaMinutes) {
-  const slots = STORE.state.plan.slots;
-  const i = slots.findIndex(s => s.id === slotId);
-  if (i < 0 || deltaMinutes === 0) return { conflicts: [] };
-  const day = slots[i].day;
-
-  const conflicts = [];
-  const next = slots.map((s, idx) => {
-    if (idx <= i) return s;
-    if (s.day !== day) return s;
-    if (s.locked) return s;
-    const shifted = { ...s, time: minutesToTime(timeToMinutes(s.time) + deltaMinutes) };
-    // Check if shifted lands on/after a locked slot in same day
-    const lockedAfter = slots.find((x, j) => j > idx && x.day === day && x.locked);
-    if (lockedAfter && timeToMinutes(shifted.time) >= timeToMinutes(lockedAfter.time)) {
-      conflicts.push(s.id);
-    }
-    return shifted;
-  });
-  STORE.set('plan.slots', next);
-  return { conflicts };
-}
-
-// Seed slots on first load (or if user has emptied the plan).
-function ensureSlotsSeeded() {
-  if (!Array.isArray(STORE.state.plan.slots) || STORE.state.plan.slots.length === 0) {
-    STORE.state.plan.slots = SEED_SLOTS.map(s => ({ ...s }));
-    persist();
-  }
-}
-
-// If a saved slot points at a catalog item that no longer exists (e.g.
-// Buxton Hall after permanent closure), null out the ref so the slot
-// renders as "Tap to choose" instead of looking broken.
-function cleanupStaleRefs() {
-  let changed = false;
-  STORE.state.plan.slots.forEach(s => {
-    if (s.ref && !lookupRef(s.ref)) {
-      console.warn(`Cleared stale ref "${s.ref}" from slot ${s.id} (catalog item no longer exists)`);
-      s.ref = null;
-      changed = true;
-    }
-  });
-  if (changed) persist();
-}
 
 /* ============================================================
    RENDERERS
@@ -1009,38 +709,38 @@ function renderOverview() {
     <section class="section active" data-section="overview">
       <div class="section-eyebrow">Briefing</div>
       <h2 class="section-title">The Plan, <em>in brief</em></h2>
-      <p class="section-intro">Sunday after church we point the minivan south. Three nights tucked into Biltmore Village. A day at Vanderbilt's astonishing house, a slow morning along the Parkway, an afternoon antiquing in Black Mountain — then on to Hilton Head.</p>
+      <p class="section-intro">Saturday: drive down to Gatlinburg, hotel pool, dinner on the Parkway, Mad Dog's for dessert. Sunday: church, lunch in town, then over to the Asheville Airbnb. Six full days of mountains, Biltmore, BBQ, and the river.</p>
 
       <div class="at-a-glance">
-        <div class="glance-tile"><div class="label">Drive south</div><div class="value"><em>5h 15m</em></div></div>
-        <div class="glance-tile"><div class="label">Nights</div><div class="value"><em>3</em></div></div>
-        <div class="glance-tile"><div class="label">Biltmore</div><div class="value"><em>Tue AM</em></div></div>
-        <div class="glance-tile"><div class="label">Next stop</div><div class="value"><em>Hilton Head</em></div></div>
+        <div class="glance-tile"><div class="label">Nights</div><div class="value"><em>7</em></div></div>
+        <div class="glance-tile"><div class="label">Travelers</div><div class="value"><em>8</em></div></div>
+        <div class="glance-tile"><div class="label">Biltmore</div><div class="value"><em>Tue</em></div></div>
+        <div class="glance-tile"><div class="label">Return</div><div class="value"><em>Sat 25</em></div></div>
       </div>
 
-      <h3 class="subhead"><span>Weather (estimated)</span><span class="count">late June avg</span></h3>
+      <h3 class="subhead"><span>Weather (estimated)</span><span class="count">late-July avg</span></h3>
       <div class="weather-strip">
-        <div class="weather-day"><div class="day-abbr">Sun 28</div><div class="cond">☀️</div><div class="temp">84°<small>/64°</small></div></div>
-        <div class="weather-day"><div class="day-abbr">Mon 29</div><div class="cond">⛅</div><div class="temp">82°<small>/63°</small></div></div>
-        <div class="weather-day"><div class="day-abbr">Tue 30</div><div class="cond">🌤️</div><div class="temp">83°<small>/64°</small></div></div>
-        <div class="weather-day"><div class="day-abbr">Wed 01</div><div class="cond">☀️</div><div class="temp">85°<small>/65°</small></div></div>
+        <div class="weather-day"><div class="day-abbr">Sat 18</div><div class="cond">⛅</div><div class="temp">87°<small>/68°</small></div></div>
+        <div class="weather-day"><div class="day-abbr">Sun 19</div><div class="cond">🌦️</div><div class="temp">85°<small>/67°</small></div></div>
+        <div class="weather-day"><div class="day-abbr">Wed 22</div><div class="cond">☀️</div><div class="temp">86°<small>/66°</small></div></div>
+        <div class="weather-day"><div class="day-abbr">Sat 25</div><div class="cond">🌤️</div><div class="temp">87°<small>/67°</small></div></div>
       </div>
-      <p style="font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;color:var(--ink-faint);text-align:center;margin-bottom:1.5rem;">Asheville at 2,134 ft · cooler than home · check forecast nearer the date</p>
+      <p style="font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;color:var(--ink-faint);text-align:center;margin-bottom:1.5rem;">Asheville sits at 2,100 ft · warmer in Gatlinburg (1,300 ft) · check forecast closer</p>
 
       <div class="callout tip">
-        <div class="callout-label">Why this trip works</div>
-        <div class="callout-text">Asheville sits at over 2,000 ft elevation — June highs in the mid-80s but cool 60s overnight, far gentler than Ohio. The 4th-of-July week brings crowds; <strong>we slip in just ahead of them.</strong></div>
+        <div class="callout-label">Confirmed so far</div>
+        <div class="callout-text"><strong>Airbnb</strong> in West Asheville (Sun 19 – Sat 25) &middot; <strong>Biltmore</strong> Tuesday for smaller crowds &middot; <strong>Pack's Tavern</strong>, <strong>Hole Doughnuts</strong>, and <strong>Mad Dog's Creamery</strong> in Gatlinburg all on the list. Everything else can flex.</div>
       </div>
 
       <div class="callout note">
-        <div class="callout-label">For Mom · Alzheimer's-aware</div>
-        <div class="callout-text">The plan is built around her best hours — mornings to early afternoon. Familiar pleasures (scenic drives, sitting in pretty gardens, sweet treats, small-town windows) over big crowds or long lines. Plenty of bench-and-rest moments. Full list of gentle considerations on the <strong>Info</strong> tab.</div>
+        <div class="callout-label">Meal cadence</div>
+        <div class="callout-text">Eat out most dinners, <strong>grill once</strong> (Wednesday after the Parkway looks good), <strong>sandwich lunches</strong> at the house 1–2 days. Ice cream every day is on the itinerary.</div>
       </div>
 
       <h3 class="subhead"><span>Quick Jump</span><span class="count">tap a section</span></h3>
       <div style="display:grid; grid-template-columns: 1fr 1fr; gap:.6rem;">
-        <button class="action-btn" data-jump="drive">🚗 Drive Down</button>
-        <button class="action-btn" data-jump="stay">🏨 Where We Stay</button>
+        <button class="action-btn" data-jump="drive">🚗 Drive Days</button>
+        <button class="action-btn" data-jump="stay">🏠 Where We Stay</button>
         <button class="action-btn" data-jump="plan">📅 Day by Day</button>
         <button class="action-btn" data-jump="eat">🍴 Eat &amp; Treat</button>
         <button class="action-btn" data-jump="do">⛰️ Things to Do</button>
@@ -1054,201 +754,127 @@ function renderDrive() {
   const d = TRIP_DATA.drive;
   return `
     <section class="section" data-section="drive">
-      <div class="section-eyebrow">The Way There</div>
-      <h2 class="section-title">Drive <em>south</em></h2>
+      <div class="section-eyebrow">The Way There & Back</div>
+      <h2 class="section-title">Drive <em>days</em></h2>
       <p class="section-intro">${d.overview}</p>
 
-      <div class="mini-map">
-        <svg viewBox="0 0 400 200" preserveAspectRatio="none">
-          <path d="M50,40 Q140,70 200,100 T350,160" stroke="#fff" stroke-width="2" stroke-dasharray="6 4" fill="none" opacity="0.7"/>
-          <circle cx="50" cy="40" r="6" fill="#fff"/>
-          <circle cx="350" cy="160" r="6" fill="#f7d97a"/>
-          <text x="64" y="46" fill="#fff" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1">WEST CHESTER, OH</text>
-          <text x="336" y="156" fill="#fff" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1" text-anchor="end">ASHEVILLE, NC</text>
-        </svg>
-        <div class="mini-map-label">
-          <div class="from-to">${d.routeName}</div>
-          <em>${d.distance} · ${d.duration}</em>
-        </div>
-      </div>
+      ${d.legs.map((leg, li) => `
+        <h3 class="subhead"><span>${leg.title}</span><span class="count">${leg.distance}</span></h3>
 
-      <h3 class="subhead"><span>Route &amp; Stops</span><span class="count">${d.steps.length} legs</span></h3>
-      <div class="card" style="padding:0 1.25rem;">
-        ${d.steps.map(step => `
-          <div class="route-step">
-            <div class="route-marker">${step.marker}</div>
-            <div class="route-content">
-              <div class="route-meta">${step.meta}</div>
-              <div class="route-title">${step.title}</div>
-              <div class="route-desc">${step.desc}</div>
-            </div>
+        <div class="mini-map">
+          <svg viewBox="0 0 400 200" preserveAspectRatio="none">
+            <path d="M50,40 Q140,70 200,100 T350,160" stroke="#fff" stroke-width="2" stroke-dasharray="6 4" fill="none" opacity="0.7"/>
+            <circle cx="50" cy="40" r="6" fill="#fff"/>
+            <circle cx="350" cy="160" r="6" fill="#f7d97a"/>
+          </svg>
+          <div class="mini-map-label">
+            <div class="from-to">${leg.routeName}</div>
+            <em>${leg.duration} · arrive ${leg.arrive}</em>
           </div>
-        `).join('')}
-      </div>
+        </div>
+
+        <div class="card" style="padding:0 1.25rem;">
+          ${leg.steps.map(step => `
+            <div class="route-step">
+              <div class="route-marker">${step.marker}</div>
+              <div class="route-content">
+                <div class="route-meta">${step.meta}</div>
+                <div class="route-title">${step.title}</div>
+                <div class="route-desc">${step.desc}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `).join('')}
 
       <div class="callout tip">
-        <div class="callout-label">Departure plan</div>
-        <div class="callout-text">Leaving at <strong>noon Sunday</strong> from Beckett Ridge in West Chester. Plan one solid stop in Corbin or Knoxville for lunch + bathroom + leg-stretch. Aim to roll into Biltmore Village around <strong>5:30–6:00 PM</strong> — enough time to settle and walk to dinner without rushing.</div>
+        <div class="callout-label">Two-vehicle logistics</div>
+        <div class="callout-text">8 people usually means two vehicles. Keep the caravan loose — set a meeting point (gas station, exit number) every 90 min or so instead of trying to stay in visual contact. Group chat with live location works well.</div>
       </div>
 
-      <h3 class="subhead"><span>Wednesday · Onward to Hilton Head</span><span class="count">${d.returnLeg.distance}</span></h3>
-      <div class="card" style="padding:1rem 1.25rem;">
-        ${d.returnLeg.steps.map(s => `
-          <div class="route-step" style="padding:.75rem 0;">
-            <div class="route-marker" style="font-size:1.15rem;">${s.time.replace(' AM','a').replace(' PM','p').replace(':','')}</div>
-            <div class="route-content">
-              <div class="route-desc" style="margin-top:.25rem;">${s.what}</div>
-            </div>
-          </div>
-        `).join('')}
-      </div>
-
-      <a class="action-btn primary" style="margin-top:1rem;" href="${gmapsLink('Beckett Ridge Golf Course West Chester OH to AC Hotel Biltmore Village Asheville NC')}" target="_blank" rel="noopener">🗺️ Open route in Google Maps</a>
+      <a class="action-btn primary" style="margin-top:1rem;" href="${gmapsLink('West Chester OH to Gatlinburg TN')}" target="_blank" rel="noopener">🗺️ Route 1 in Google Maps</a>
+      <a class="action-btn" style="margin-top:.5rem;" href="${gmapsLink('Gatlinburg TN to 129 Climbing Aster Way Asheville NC')}" target="_blank" rel="noopener">🗺️ Route 2: Gatlinburg → Airbnb</a>
     </section>
   `;
 }
 
-// Neighborhood options for the custom-hotel form.
-const NEIGHBORHOODS = [
-  ['biltmore-village', 'Biltmore Village'],
-  ['downtown', 'Downtown'],
-  ['south-asheville', 'South Asheville'],
-  ['east-asheville', 'East Asheville'],
-  ['west-asheville', 'West Asheville'],
-  ['north-asheville', 'North Asheville'],
-  ['river-arts', 'River Arts District'],
-  ['south-slope', 'South Slope'],
-  ['arden', 'Arden'],
-  ['black-mountain', 'Black Mountain'],
-  ['weaverville', 'Weaverville'],
-  ['other', 'Other / not sure']
-];
-
-// Hotel-aware advisory shown atop the Plan tab — non-destructive guidance
-// keyed on the selected hotel's neighborhood.
-const HOTEL_RULES = {
-  'biltmore-village': "You're in Biltmore Village — dinner, the Biltmore gate, and morning coffee are all walkable. Easiest base for the group.",
-  'east-asheville': "From East Asheville (Tunnel Rd), most stops are a short drive. The free hot breakfast is a real money-saver for four.",
-  'arden': "The cabin in Arden is ~20 min south of town — add drive time to the Day 1 arrival and Day 4 departure, and consider a dinner-in night. Stock the kitchen on the way in."
-};
-
-// Seeded hotels + any user-added custom hotels.
-function allHotels() {
-  return [...TRIP_DATA.lodging, ...(STORE.state.plan.customHotels || [])];
-}
-
 function renderStay() {
-  const items = allHotels();
-  const selectedId = STORE.state.plan.hotelId;
+  const items = TRIP_DATA.lodging;
   return `
     <section class="section" data-section="stay">
       <div class="section-eyebrow">Lodging</div>
       <h2 class="section-title">Where we <em>stay</em></h2>
-      <p class="section-intro">Tap the <strong>★</strong> on a hotel to make it your base — every "walk vs. drive" estimate and nearby-restaurant suggestion across the plan updates to match. The AC Biltmore Village is our top pick.</p>
+      <p class="section-intro">Asheville is <strong>confirmed</strong> — the Airbnb in West Asheville is booked for the six main nights. Gatlinburg (Sat Jul 18) still needs a hotel; three good options below.</p>
 
-      <h3 class="subhead"><span>Choose your base</span><span class="count">${items.length} options</span></h3>
+      <h3 class="subhead"><span>Asheville · Confirmed</span><span class="count">6 nights</span></h3>
+      ${items.filter(h => h.id === 'airbnb-asheville').map(h => cardLodging(h)).join('')}
 
-      ${items.map(h => {
-        const isSelected = h.id === selectedId;
-        const isCustom = !!h.custom;
-        return `
-        <div class="card lodging-card ${isSelected ? 'selected' : ''}" data-id="${h.id}">
-          ${isSelected
-            ? '<div class="recommended-badge">✓ You\'re staying here</div>'
-            : (h.featured ? '<div class="recommended-badge alt">★ Top pick</div>' : '')}
-          <div class="card-head">
-            <div>
-              <div class="card-name">${h.name}</div>
-              <div style="font-family:var(--font-serif);font-style:italic;color:var(--ink-faint);font-size:.92rem;margin-top:.2rem;">${h.tagline || (isCustom ? 'Your custom pick' : '')}</div>
-              ${h.price ? `<div class="price-tag"><span class="currency">$</span>${h.price}<span class="nights">/ night · ${h.estTotal || ''}</span></div>` : ''}
-            </div>
-            <button class="hotel-select-btn ${isSelected ? 'selected' : ''}" data-action="select-hotel" data-hotel-id="${h.id}" aria-label="${isSelected ? 'Selected as your hotel' : 'Choose this hotel'}" title="${isSelected ? "You're staying here" : 'Stay here'}">
-              ${isSelected ? '★' : '☆'}
-            </button>
-          </div>
-          ${h.tags ? `<div class="card-tags">${h.tags.map(t => `<span class="tag${t === 'Recommended' ? ' accent' : ''}">${t}</span>`).join('')}</div>` : ''}
-          ${h.desc ? `<div class="card-desc">${h.desc}</div>` : ''}
-          ${h.why ? `<div class="timeline-note"><strong style="color:var(--accent);">Why it fits:</strong> ${h.why}</div>` : ''}
-          ${h.amenities ? `<div class="amenities">${h.amenities.map(a => `<span class="amenity">${a}</span>`).join('')}</div>` : ''}
-          <div class="card-meta">
-            ${h.address ? `<div>📍 <strong>${h.address}</strong></div>` : ''}
-            ${h.phone ? `<div>📞 <strong>${h.phone}</strong></div>` : ''}
-            ${isCustom && h.neighborhood ? `<div>🧭 <strong>${(NEIGHBORHOODS.find(n => n[0] === h.neighborhood) || [, h.neighborhood])[1]}</strong></div>` : ''}
-          </div>
-          <div class="card-actions">
-            ${h.address ? `<a class="action-btn" href="${gmapsLink(h.address)}" target="_blank" rel="noopener">🗺 Map</a>` : ''}
-            ${h.phone ? `<a class="action-btn" href="${telLink(h.phone)}">📞 Call</a>` : ''}
-            ${h.website ? `<a class="action-btn primary" href="${h.website}" target="_blank" rel="noopener">Book →</a>` : ''}
-            ${isCustom ? `<button class="action-btn" data-action="delete-custom-hotel" data-hotel-id="${h.id}">🗑 Remove</button>` : ''}
-          </div>
-        </div>
-      `;}).join('')}
-
-      <div class="card custom-hotel-card">
-        <button class="add-custom-toggle" data-action="toggle-custom-form">＋ Add a custom hotel or rental</button>
-        <div class="custom-hotel-form" id="customHotelForm" hidden>
-          <label>Name<input type="text" id="chName" placeholder="e.g. Airbnb on Sunset Mtn" /></label>
-          <label>Address (optional)<input type="text" id="chAddress" placeholder="Street, city" /></label>
-          <label>Neighborhood<select id="chNeighborhood">${NEIGHBORHOODS.map(([v, l]) => `<option value="${v}">${l}</option>`).join('')}</select></label>
-          <label>Notes (optional)<input type="text" id="chNotes" placeholder="Anything to remember" /></label>
-          <button class="action-btn primary" data-action="save-custom-hotel">Add &amp; select this hotel</button>
-        </div>
-      </div>
+      <h3 class="subhead"><span>Gatlinburg · Pick One</span><span class="count">Sat Jul 18 only</span></h3>
+      ${items.filter(h => h.id !== 'airbnb-asheville').map(h => cardLodging(h)).join('')}
 
       <div class="callout tip">
-        <div class="callout-label">Booking tip</div>
-        <div class="callout-text">Late June is high-demand (4th of July week starts that weekend). <strong>Book at least 6 weeks ahead</strong> for best rates and room selection. Marriott/Hilton members: book direct for free WiFi and points. Always check the hotel's own website vs. Expedia — prices often match but the direct booking adds perks.</div>
+        <div class="callout-label">Booking tip · Gatlinburg</div>
+        <div class="callout-text">Mid-July Saturday in Gatlinburg fills up fast — <strong>book at least 4-6 weeks out</strong>. All three picks are downtown and walkable to the Parkway. If pool/waterslide time is a big deal for the teens, <strong>Greystone or Holiday Inn Express</strong> both deliver at a fair price.</div>
       </div>
     </section>
   `;
 }
 
+function cardLodging(h) {
+  return `
+    <div class="card lodging-card ${h.featured ? 'recommended' : ''}" data-id="${h.id}">
+      ${h.featured ? `<div class="recommended-badge">${h.id === 'airbnb-asheville' ? '★ Booked' : '★ Top pick'}</div>` : ''}
+      <div class="card-head">
+        <div>
+          <div class="card-name">${h.name}</div>
+          <div style="font-family:var(--font-serif);font-style:italic;color:var(--ink-faint);font-size:.92rem;margin-top:.2rem;">${h.tagline}</div>
+          ${h.price ? `<div class="price-tag"><span class="currency">$</span>${h.price}<span class="nights">/ night · ${h.estTotal || ''}</span></div>` : `<div class="price-tag" style="color:var(--moss);"><em>${h.estTotal || ''}</em></div>`}
+        </div>
+        <button class="fav-btn" data-fav="lodging-${h.id}" aria-label="Save favorite"></button>
+      </div>
+      <div class="card-tags">${h.tags.map(t => `<span class="tag${t.startsWith('★') || t === 'Booked' ? ' accent' : ''}">${t}</span>`).join('')}</div>
+      <div class="card-desc">${h.desc}</div>
+      ${h.why ? `<div class="timeline-note"><strong style="color:var(--accent);">Why it fits:</strong> ${h.why}</div>` : ''}
+      <div class="amenities">${h.amenities.map(a => `<span class="amenity">${a}</span>`).join('')}</div>
+      <div class="card-meta">
+        ${h.address ? `<div>📍 <strong>${h.address}</strong></div>` : ''}
+        ${h.phone ? `<div>📞 <strong>${h.phone}</strong></div>` : ''}
+      </div>
+      <div class="card-actions">
+        ${h.address ? `<a class="action-btn" href="${gmapsLink(h.address)}" target="_blank" rel="noopener">🗺 Map</a>` : ''}
+        ${h.phone ? `<a class="action-btn" href="${telLink(h.phone)}">📞 Call</a>` : ''}
+        ${h.website ? `<a class="action-btn primary" href="${h.website}" target="_blank" rel="noopener">${h.id === 'airbnb-asheville' ? 'View booking →' : 'Book →'}</a>` : ''}
+      </div>
+    </div>
+  `;
+}
+
 function renderPlan() {
-  const days = TRIP_DATA.itinerary;  // day-level metadata (date, title)
-  const slots = STORE.state.plan.slots || [];
-  const hotelId = STORE.state.plan.hotelId;
-  const hotel = lookupRef('hotel:' + hotelId);
-
-  // Group slots by day, preserve original order
-  const byDay = {};
-  slots.forEach(s => { (byDay[s.day] = byDay[s.day] || []).push(s); });
-
-  // Now/Next awareness — only active when we're actually on the trip.
-  const todayDay = currentTripDay();
-  const nowMin = new Date().getHours() * 60 + new Date().getMinutes();
-  const nowNextId = todayDay ? nowNextSlotId(byDay[todayDay] || [], nowMin) : null;
-  const nowState = (s) => {
-    if (s.day !== todayDay) return null;
-    if (s.id === nowNextId) return 'now';
-    return timeToMinutes(s.time) < nowMin ? 'past' : null;
-  };
-
-  const dayHotelLine = hotel
-    ? `Staying at <em>${hotel.name}</em>.`
-    : '';
-  const ruleText = hotel ? HOTEL_RULES[hotel.neighborhood] : '';
-  const hotelCallout = ruleText
-    ? `<div class="callout note"><div class="callout-label">Your base · ${hotel.name}</div><div class="callout-text">${ruleText}</div></div>`
-    : '';
-
+  const days = TRIP_DATA.itinerary;
   return `
     <section class="section" data-section="plan">
       <div class="section-eyebrow">Day by day</div>
       <h2 class="section-title">The <em>itinerary</em></h2>
-      <p class="section-intro">Built around Mom's best hours — mornings for main events, afternoons gentler, evenings short. Tap any time to adjust; lock the anchors you can't move. ${dayHotelLine}</p>
-      ${hotelCallout}
+      <p class="section-intro">Full 8-day plan. Times are guides — everything flexes. Favorite spots you love (★), skip what you don't.</p>
 
       ${days.map(d => `
-        <div class="day-card ${d.day === todayDay ? 'is-today' : ''}" data-day="${d.day}">
+        <div class="day-card">
           <div class="day-header">
             <div>
-              <div class="day-number">Day ${d.day}${d.day === todayDay ? ' · Today' : ''}</div>
+              <div class="day-number">Day ${d.day}</div>
               <div class="day-title">${d.title}</div>
             </div>
             <div class="day-date">${d.date}</div>
           </div>
           <div class="timeline">
-            ${(byDay[d.day] || []).map(s => renderSlot(s, hotelId, nowState(s))).join('')}
+            ${d.items.map(it => `
+              <div class="timeline-item">
+                <div class="timeline-time">${it.time}</div>
+                <div class="timeline-title">${it.title}</div>
+                <div class="timeline-detail">${it.detail}</div>
+                ${it.note ? `<div class="timeline-note">${it.note}</div>` : ''}
+              </div>
+            `).join('')}
           </div>
         </div>
       `).join('')}
@@ -1256,88 +882,20 @@ function renderPlan() {
   `;
 }
 
-function renderReservationChip(slot) {
-  const map = {
-    needed:    { cls: 'needed',    label: '● Need to book' },
-    confirmed: { cls: 'confirmed', label: '✓ Booked' },
-    walkin:    { cls: 'walkin',    label: '○ Walk-in / no res' }
-  };
-  const m = map[slot.reservation] || { cls: 'unset', label: '＋ Reservation?' };
-  return `<button class="reservation-chip ${m.cls}" data-action="cycle-reservation" data-slot-id="${slot.id}" title="Tap to cycle reservation status">${m.label}</button>`;
-}
-
-function renderSlot(slot, hotelId, nowState = null) {
-  const r = resolveSlot(slot, hotelId);
-  const isMeal = slot.kind === 'meal';
-  const isActivity = slot.kind === 'activity';
-  const swappable = isMeal || isActivity;
-  const showProx = (isMeal || isActivity) && r.proximityLabel;
-  const proxIcon = r.proximityKind === 'walk' ? '🚶' : '🚗';
-  const kindLabel = isMeal
-    ? (slot.mealType || 'meal').replace(/^./, c => c.toUpperCase())
-    : isActivity ? 'Activity'
-    : slot.kind === 'drive' ? 'Drive'
-    : slot.kind === 'rest' ? 'Rest' : '';
-
-  return `
-    <div class="timeline-item slot ${slot.locked ? 'is-locked' : ''} ${r.needsAssignment ? 'needs-assignment' : ''} ${nowState ? 'slot-' + nowState : ''}" data-slot-id="${slot.id}">
-      <div class="slot-head">
-        <button class="slot-time" data-action="edit-time" data-slot-id="${slot.id}" aria-label="Edit time">
-          ${slot.time}
-        </button>
-        ${nowState === 'now' ? '<span class="slot-now-badge">Now / Next</span>' : ''}
-        ${kindLabel ? `<span class="slot-kind">${kindLabel}</span>` : ''}
-        <button class="slot-lock ${slot.locked ? 'locked' : ''}" data-action="toggle-lock" data-slot-id="${slot.id}" aria-label="${slot.locked ? 'Unlock' : 'Lock'}" title="${slot.locked ? 'Locked — won\'t reflow when other times change' : 'Tap to lock this time'}">
-          ${slot.locked ? '🔒' : '🔓'}
-        </button>
-      </div>
-      <div class="timeline-title">${r.title}</div>
-      ${r.subtitle ? `<div class="slot-subtitle">${r.subtitle}</div>` : ''}
-      ${r.body ? `<div class="timeline-detail">${r.body}</div>` : ''}
-      ${showProx ? `<div class="slot-proximity">${proxIcon} ${r.proximityLabel}</div>` : ''}
-      ${isMeal && slot.ref && (slot.mealType === 'lunch' || slot.mealType === 'dinner') ? renderReservationChip(slot) : ''}
-      ${r.note ? `<div class="timeline-note">${r.note}</div>` : ''}
-      ${swappable ? `
-        <div class="slot-actions">
-          <button class="slot-swap" data-action="swap-ref" data-slot-id="${slot.id}">
-            ${r.needsAssignment ? `＋ Choose ${slot.mealType || 'option'}` : (slot.ref ? 'Change' : 'Pick one')}
-          </button>
-          ${slot.ref ? `<button class="slot-unassign" data-action="unassign-ref" data-slot-id="${slot.id}" title="Remove this pick">✕</button>` : ''}
-        </div>
-      ` : ''}
-    </div>
-  `;
-}
-
 function renderEat() {
   const restaurants = TRIP_DATA.restaurants;
   const treats = TRIP_DATA.treats;
 
-  const cardOf = (r, prefix) => {
-    const refKind = prefix === 'rest' ? 'restaurant' : 'treat';
-    const refStr = `${refKind}:${r.id}`;
-    const assigned = slotsReferencing(refStr);
-    const assignmentRow = assigned.length === 0 ? '' :
-      `<div class="card-assignment">
-         ${assigned.map(s => {
-           const slotKindLabel = s.kind === 'meal'
-             ? (s.mealType || 'meal').replace(/^./, c => c.toUpperCase())
-             : 'Plan';
-           return `<button class="assignment-chip" data-action="jump-to-slot" data-slot-id="${s.id}" title="Jump to this slot in the Plan">→ ${DAY_LABELS[s.day]} ${slotKindLabel}</button>`;
-         }).join('')}
-       </div>`;
-
-    return `
-    <div class="card" data-id="${prefix}-${r.id}">
+  const cardOf = (r, prefix) => `
+    <div class="card" data-id="${prefix}-${r.name}">
       <div class="card-head">
         <div>
           <div class="card-name">${r.name}</div>
           <div style="font-family:var(--font-serif);font-style:italic;color:var(--ink-faint);font-size:.9rem;margin-top:.2rem;">${r.cat} · ${r.price || ''}</div>
-          ${assignmentRow}
         </div>
         <button class="fav-btn" data-fav="${prefix}-${r.name.replace(/\W/g,'-')}" aria-label="Save"></button>
       </div>
-      <div class="card-tags">${r.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+      <div class="card-tags">${r.tags.map(t => `<span class="tag${t.startsWith('★') ? ' accent' : ''}">${t}</span>`).join('')}</div>
       <div class="card-desc">${r.desc}</div>
       <div class="card-meta">
         ${r.meal ? `<div>🕒 <strong>${r.meal}</strong></div>` : ''}
@@ -1345,20 +903,18 @@ function renderEat() {
         ${r.phone ? `<div>📞 ${r.phone}</div>` : ''}
       </div>
       <div class="card-actions">
-        <button class="add-to-plan-btn" data-action="add-to-plan" data-ref="${refStr}">＋ Add to plan</button>
         ${r.address ? `<a class="action-btn" href="${gmapsLink(r.address)}" target="_blank" rel="noopener">🗺 Map</a>` : ''}
         ${r.phone ? `<a class="action-btn" href="${telLink(r.phone)}">📞 Call</a>` : ''}
         ${r.website ? `<a class="action-btn primary" href="${r.website}" target="_blank" rel="noopener">Site →</a>` : ''}
       </div>
     </div>
-    `;
-  };
+  `;
 
   return `
     <section class="section" data-section="eat">
       <div class="section-eyebrow">Local Tables</div>
       <h2 class="section-title">Eat &amp; <em>treat</em></h2>
-      <p class="section-intro">A mix of farm-to-table, Southern, BBQ, and casual. All independent and locally owned — no chains, nothing you can get at home. Plus the ice cream and donut hit list.</p>
+      <p class="section-intro">Your confirmed picks (★) plus lots of options — favorite the ones you want, we'll build the plan around them. All local, all independent.</p>
 
       <h3 class="subhead"><span>Restaurants</span><span class="count">${restaurants.length} picks</span></h3>
       ${restaurants.map(r => cardOf(r, 'rest')).join('')}
@@ -1367,8 +923,8 @@ function renderEat() {
       ${treats.map(t => cardOf(t, 'treat')).join('')}
 
       <div class="callout tip">
-        <div class="callout-label">Reservation strategy</div>
-        <div class="callout-text">For dinner spots (Corner Kitchen, Rhubarb, Market Place, Chestnut), <strong>book a week ahead</strong> minimum — late June fills fast. BBQ and breakfast spots don't take reservations — go off-peak (11 AM or 1:30 PM for lunch, 5:30 PM or 8 PM for dinner) to skip the line.</div>
+        <div class="callout-label">Booking strategy for 8</div>
+        <div class="callout-text"><strong>Book a week+ ahead</strong> for dinner spots (Pack's Tavern, Rhubarb, Cúrate, Corner Kitchen, Peddler). Casual/BBQ places don't take reservations — go at 5:30 PM or 8 PM to skip the line. Pack's Tavern is your best group play for lunch.</div>
       </div>
     </section>
   `;
@@ -1380,22 +936,14 @@ function renderDo() {
     <section class="section" data-section="do">
       <div class="section-eyebrow">Things to Do</div>
       <h2 class="section-title">Out and <em>about</em></h2>
-      <p class="section-intro">Built for the group — easy walks, scenic drives, low-stress browsing, with the Biltmore as the big-ticket item.</p>
+      <p class="section-intro">Biltmore is the big-ticket day. Add in a river float, natural waterslide, and a Parkway drive and you've got a great mix. Favorite what you want, we'll plan around it.</p>
 
-      ${items.map(a => {
-        const refStr = `activity:${a.id}`;
-        const assigned = slotsReferencing(refStr);
-        const assignmentRow = assigned.length === 0 ? '' :
-          `<div class="card-assignment">
-             ${assigned.map(s => `<button class="assignment-chip" data-action="jump-to-slot" data-slot-id="${s.id}" title="Jump to this slot in the Plan">→ ${DAY_LABELS[s.day]} · ${s.time}</button>`).join('')}
-           </div>`;
-        return `
+      ${items.map(a => `
         <div class="card">
           <div class="card-head">
             <div>
               <div class="card-name">${a.name}</div>
               <div style="font-family:var(--font-serif);font-style:italic;color:var(--ink-faint);font-size:.9rem;margin-top:.2rem;">${a.cat}</div>
-              ${assignmentRow}
             </div>
             <button class="fav-btn" data-fav="do-${a.name.replace(/\W/g,'-')}" aria-label="Save"></button>
           </div>
@@ -1409,18 +957,16 @@ function renderDo() {
             ${a.phone ? `<div>📞 ${a.phone}</div>` : ''}
           </div>
           <div class="card-actions">
-            <button class="add-to-plan-btn" data-action="add-to-plan" data-ref="${refStr}">＋ Add to plan</button>
             ${a.address ? `<a class="action-btn" href="${gmapsLink(a.address)}" target="_blank" rel="noopener">🗺 Map</a>` : ''}
             ${a.phone ? `<a class="action-btn" href="${telLink(a.phone)}">📞 Call</a>` : ''}
             ${a.website ? `<a class="action-btn primary" href="${a.website}" target="_blank" rel="noopener">Site →</a>` : ''}
           </div>
         </div>
-        `;
-      }).join('')}
+      `).join('')}
 
       <div class="callout tip">
-        <div class="callout-label">Biltmore strategy</div>
-        <div class="callout-text"><strong>Buy tickets online</strong> at biltmore.com (saves $10/ticket). For Tuesday's visit, get the 65+ discount for Mom (saves $18 — Tue/Wed only). Pick the earliest entry slot — crowds are smallest before 10 AM. Free wheelchairs at the entrance; even if not full-time, a smart fallback. Plan 4–6 hours total.</div>
+        <div class="callout-label">Biltmore strategy for 8</div>
+        <div class="callout-text"><strong>Buy tickets online</strong> at biltmore.com — saves $10/ticket × 8 = $80. Get the earliest entry slot Tuesday for smallest crowds. If anyone is 65+, they save an additional $18 on Tue/Wed. Plan 5–6 hours total on the estate.</div>
       </div>
     </section>
   `;
@@ -1428,36 +974,24 @@ function renderDo() {
 
 function renderInfo() {
   const budget = TRIP_DATA.budget;
-  const total = budget.reduce((s, b) => s + b.amount, 0);
+  const total = budget.reduce((s, b) => s + (b.amount || 0), 0);
   const packing = TRIP_DATA.packing;
-  const alz = TRIP_DATA.alzTips;
-  // Make the "front desk" contact reflect the currently-selected hotel.
-  const selHotel = lookupRef('hotel:' + STORE.state.plan.hotelId);
-  const contacts = TRIP_DATA.contacts.map(c => {
-    if (/front desk/i.test(c.name) && selHotel) {
-      return {
-        name: `${selHotel.name} — front desk`,
-        number: selHotel.phone || c.number,
-        note: selHotel.phone ? 'Your selected hotel' : 'No direct number saved — verify when booking'
-      };
-    }
-    return c;
-  });
+  const contacts = TRIP_DATA.contacts;
 
   return `
     <section class="section" data-section="info">
       <div class="section-eyebrow">The Practical</div>
       <h2 class="section-title">Info &amp; <em>lists</em></h2>
-      <p class="section-intro">Budget breakdown, packing checklist (your checks are saved automatically), Alzheimer's-aware tips for the group, and emergency contacts.</p>
+      <p class="section-intro">Budget estimate, packing checklist (your checks save automatically), and emergency contacts for both stops.</p>
 
-      <h3 class="subhead"><span>Budget estimate</span><span class="count">all-in</span></h3>
+      <h3 class="subhead"><span>Budget estimate</span><span class="count">excl. Airbnb</span></h3>
       <div class="budget-summary">
-        <div class="budget-label">Estimated total</div>
+        <div class="budget-label">Estimated total (on top of Airbnb)</div>
         <div class="budget-total"><span class="currency">$</span>${total.toLocaleString()}</div>
         <div class="budget-bar"><div class="budget-fill" style="width: 100%;"></div></div>
         <div class="budget-breakdown">
-          <span>4 people · 3 nights</span>
-          <span>~$${Math.round(total/4).toLocaleString()}/person</span>
+          <span>8 people · 7 nights</span>
+          <span>~$${Math.round(total/8).toLocaleString()}/person</span>
         </div>
       </div>
 
@@ -1465,14 +999,14 @@ function renderInfo() {
         ${budget.map(b => `
           <div class="budget-line">
             <div class="label-text">${b.category}<small>${b.note}</small></div>
-            <div class="amount">$${b.amount.toLocaleString()}</div>
+            <div class="amount">${b.booked ? '<em style="color:var(--moss);font-style:italic;">Booked</em>' : '$' + b.amount.toLocaleString()}</div>
           </div>
         `).join('')}
       </div>
 
-      <div class="callout note">
+      <div class="callout tip">
         <div class="callout-label">Budget note</div>
-        <div class="callout-text">Lodging budget request was $1,250 for 3 nights. The AC Hotel option comes in at ~<strong>$575 for two rooms</strong> — well under, leaving room for nicer dinners and the Biltmore tickets within the same overall envelope. Total trip estimate is ~$${total.toLocaleString()} all-in for four people.</div>
+        <div class="callout-text">This is <strong>on top of the Airbnb</strong> (already paid). Total per person excluding the Airbnb: ~<strong>$${Math.round(total/8).toLocaleString()}</strong>. Biltmore and dinners are the biggest levers — swap in more house meals to trim it.</div>
       </div>
 
       <h3 class="subhead"><span>Packing checklist</span><span class="count" id="packCount">0 / 0</span></h3>
@@ -1488,13 +1022,6 @@ function renderInfo() {
         </div>
       `).join('')}
 
-      <h3 class="subhead"><span>Alzheimer's-aware tips</span><span class="count">for the group</span></h3>
-      <div class="card">
-        <ul class="alz-tips">
-          ${alz.map(t => `<li><strong>${t.strong}.</strong> ${t.text}</li>`).join('')}
-        </ul>
-      </div>
-
       <h3 class="subhead"><span>Emergency &amp; medical</span><span class="count">save offline</span></h3>
       ${contacts.map(c => `
         <div class="card emergency-card">
@@ -1505,107 +1032,25 @@ function renderInfo() {
           ${c.note ? `<div class="card-desc" style="margin:.5rem 0 0;">${c.note}</div>` : ''}
         </div>
       `).join('')}
-
-      <div class="callout warning">
-        <div class="callout-label">If something happens</div>
-        <div class="callout-text">For non-urgent illness, head to <strong>Asheville Urgent Care</strong>. For anything chest-pain, breathing, or stroke-related, call 911 first — Mission Hospital is 5 min from Biltmore Village and has a full ER. Keep a written medication list in your wallet for Mom.</div>
-      </div>
     </section>
   `;
 }
 
 /* ============================================================
-   APP STATE — single reactive store
-
-   Mutations via STORE.set('path.to.key', value) or STORE.update('path', fn).
-   Subscribers fire after every change. Persistence is debounced + automatic.
-
-   State shape:
-   {
-     plan:      { hotelId, slots: [...], customHotels: [...] },
-     bookmarks: { 'rest-buxton-hall-barbecue': true, ... },
-     checks:    { 'pack-Essentials-0': true, ... },
-     ui:        { activeTab: 'overview', modal: null },
-     theme:     'light' | 'dark',
-     sync:      { gistId?, pat? }   // Phase 6b
-   }
+   APP STATE + INTERACTIONS
    ============================================================ */
 
-const FEATURED_HOTEL = TRIP_DATA.lodging.find(h => h.featured)?.id || 'ac-biltmore';
-const PERSIST_KEY = 'avl_state_v2';
-
-const DEFAULT_STATE = {
-  plan: { hotelId: FEATURED_HOTEL, slots: [], customHotels: [] },
-  bookmarks: {},
-  checks: {},
-  ui: { activeTab: 'overview', modal: null },
-  theme: 'light',
-  sync: {}
+const STATE = {
+  current: 'overview',
+  favs: JSON.parse(localStorage.getItem('avl_favs') || '{}'),
+  checks: JSON.parse(localStorage.getItem('avl_checks') || '{}'),
+  theme: localStorage.getItem('avl_theme') || 'light'
 };
 
-const STORE = {
-  state: JSON.parse(JSON.stringify(DEFAULT_STATE)),
-  subscribers: new Set(),
-  get(path) {
-    return (path || '').split('.').filter(Boolean).reduce((o, k) => o?.[k], this.state);
-  },
-  set(path, value) {
-    const keys = path.split('.');
-    const last = keys.pop();
-    const parent = keys.reduce((o, k) => (o[k] ??= {}), this.state);
-    parent[last] = value;
-    this.notify(path);
-  },
-  update(path, updater) { this.set(path, updater(this.get(path))); },
-  subscribe(fn) { this.subscribers.add(fn); return () => this.subscribers.delete(fn); },
-  notify(path) {
-    this.subscribers.forEach(fn => {
-      try { fn(path, this.state); } catch (e) { console.error('Subscriber error:', e); }
-    });
-  }
-};
-
-// Hydrate on boot — prefer v2 blob, else migrate from legacy v1 keys.
-(function hydrate() {
-  try {
-    const raw = localStorage.getItem(PERSIST_KEY);
-    if (raw) {
-      const stored = JSON.parse(raw);
-      // Shallow-merge over defaults so newly-added fields survive across versions
-      STORE.state = {
-        ...DEFAULT_STATE,
-        ...stored,
-        plan: { ...DEFAULT_STATE.plan, ...(stored.plan || {}) },
-        ui:   { ...DEFAULT_STATE.ui,   ...(stored.ui   || {}) },
-        sync: { ...DEFAULT_STATE.sync, ...(stored.sync || {}) }
-      };
-      return;
-    }
-    // First post-Phase-2 load — migrate legacy keys (don't lose user data).
-    const legacyFavs   = JSON.parse(localStorage.getItem('avl_favs')   || '{}');
-    const legacyChecks = JSON.parse(localStorage.getItem('avl_checks') || '{}');
-    const legacyTheme  = localStorage.getItem('avl_theme') || 'light';
-    STORE.state.bookmarks = legacyFavs;
-    STORE.state.checks    = legacyChecks;
-    STORE.state.theme     = legacyTheme;
-  } catch (e) {
-    console.warn('Store hydrate failed, starting fresh:', e);
-  }
-})();
-
-let _persistTimer = null;
-function persist() {
-  clearTimeout(_persistTimer);
-  _persistTimer = setTimeout(() => {
-    try { localStorage.setItem(PERSIST_KEY, JSON.stringify(STORE.state)); }
-    catch (e) { console.warn('Persist failed:', e); }
-  }, 150);
-}
-STORE.subscribe(persist);
+function persistFavs() { localStorage.setItem('avl_favs', JSON.stringify(STATE.favs)); }
+function persistChecks() { localStorage.setItem('avl_checks', JSON.stringify(STATE.checks)); }
 
 function mountSections() {
-  ensureSlotsSeeded();
-  cleanupStaleRefs();
   const root = $('#sections');
   root.innerHTML =
     renderOverview() +
@@ -1620,61 +1065,16 @@ function mountSections() {
   updatePackCount();
 }
 
-// Re-render a single section in place. Keeps other sections' DOM stable so
-// scroll position and any fav-button DOM state persist outside the target.
-function rerenderSection(name, renderFn) {
-  const cur = document.querySelector(`section[data-section="${name}"]`);
-  if (!cur) return;
-  const wasActive = cur.classList.contains('active');
-  const wrapper = document.createElement('div');
-  wrapper.innerHTML = renderFn();
-  const next = wrapper.firstElementChild;
-  if (wasActive) next.classList.add('active');
-  cur.replaceWith(next);
-  applyFavs(); // re-apply bookmarks to any new fav-btns in the swapped section
-}
-
-function rerenderPlan() { rerenderSection('plan', renderPlan); }
-
-// Re-render the right sections based on what changed in the plan.
-// - hotelId: proximity labels change everywhere → Plan, Stay, Overview, Info, Eat, Do
-// - slots:   itinerary + assignment chips → Plan, Eat, Do
-// - customHotels: the lodging list → Stay
-STORE.subscribe((path) => {
-  if (!path) return;
-  if (path === 'plan.hotelId') {
-    rerenderPlan();
-    rerenderSection('stay', renderStay);
-    rerenderSection('overview', renderOverview);
-    rerenderSection('info', renderInfo);
-    rerenderSection('eat', renderEat);
-    rerenderSection('do', renderDo);
-    updatePackCount();
-    return;
-  }
-  if (path === 'plan.customHotels' || path.startsWith('plan.customHotels')) {
-    rerenderSection('stay', renderStay);
-    return;
-  }
-  if (path === 'plan' || path === 'plan.slots' || path.startsWith('plan.slots')) {
-    rerenderPlan();
-    rerenderSection('eat', renderEat);
-    rerenderSection('do', renderDo);
-  }
-});
-
 function applyFavs() {
-  const bookmarks = STORE.state.bookmarks;
   $$('.fav-btn').forEach(btn => {
     const id = btn.dataset.fav;
-    btn.classList.toggle('active', !!bookmarks[id]);
+    if (STATE.favs[id]) btn.classList.add('active');
   });
 }
 function applyChecks() {
-  const checks = STORE.state.checks;
   $$('.checklist-item').forEach(item => {
     const id = item.dataset.check;
-    item.classList.toggle('checked', !!checks[id]);
+    if (STATE.checks[id]) item.classList.add('checked');
   });
 }
 
@@ -1686,44 +1086,25 @@ function updatePackCount() {
 }
 
 function switchTab(name) {
-  STORE.set('ui.activeTab', name);
-  $$('.tab').forEach(t => {
-    const on = t.dataset.tab === name;
-    t.classList.toggle('active', on);
-    if (on) t.setAttribute('aria-current', 'page');
-    else t.removeAttribute('aria-current');
-  });
+  STATE.current = name;
+  $$('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
   $$('.section').forEach(s => s.classList.toggle('active', s.dataset.section === name));
-
-  // During the trip, opening the Plan tab jumps straight to today's
-  // current/next slot instead of the top.
-  const todayDay = name === 'plan' ? currentTripDay() : null;
-  if (todayDay) {
-    setTimeout(() => {
-      const el = document.querySelector('.slot-now')
-        || document.querySelector(`.day-card[data-day="${todayDay}"]`)
-        || $('#header');
-      el?.scrollIntoView({ behavior: 'smooth', block: el.classList?.contains('slot-now') ? 'center' : 'start' });
-    }, 60);
-    return;
+  // Scroll past the hero to the content — critical for visible feedback
+  const contentEl = $('#content');
+  if (contentEl) {
+    const headerH = $('#header')?.offsetHeight || 0;
+    const y = contentEl.getBoundingClientRect().top + window.pageYOffset - headerH + 1;
+    window.scrollTo({ top: y, behavior: 'smooth' });
   }
-
-  // Otherwise scroll past the hero so the section is visible — the sticky
-  // header lands at the top of the viewport.
-  const header = $('#header');
-  if (header) header.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  else window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function applyTheme() {
-  const theme = STORE.state.theme;
-  document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'dark' : '');
+  document.documentElement.setAttribute('data-theme', STATE.theme === 'dark' ? 'dark' : '');
   const meta = $('meta[name="theme-color"]');
-  if (meta) meta.setAttribute('content', theme === 'dark' ? '#14181a' : '#1a3a2e');
+  if (meta) meta.setAttribute('content', STATE.theme === 'dark' ? '#14181a' : '#1a3a2e');
 }
 
 function bindEvents() {
-  // Tab switching + all data-action delegation
   document.addEventListener('click', e => {
     const tab = e.target.closest('.tab');
     if (tab) { switchTab(tab.dataset.tab); return; }
@@ -1735,486 +1116,27 @@ function bindEvents() {
     if (fav) {
       e.preventDefault(); e.stopPropagation();
       const id = fav.dataset.fav;
-      const next = !STORE.state.bookmarks[id];
-      STORE.update('bookmarks', b => ({ ...b, [id]: next }));
-      fav.classList.toggle('active', next);
+      STATE.favs[id] = !STATE.favs[id];
+      fav.classList.toggle('active', STATE.favs[id]);
+      persistFavs();
       return;
-    }
-
-    // Picker close (✕ button or backdrop click handled separately below)
-    if (e.target.closest('#pickerClose')) { e.preventDefault(); return closePicker(); }
-
-    // Action delegation — slot interactions, add-to-plan, jump-to-slot
-    const actionEl = e.target.closest('[data-action]');
-    if (actionEl) {
-      const action = actionEl.dataset.action;
-      const slotId = actionEl.dataset.slotId;
-      const ref = actionEl.dataset.ref;
-      const hid = actionEl.dataset.hotelId;
-      e.preventDefault();
-      if (action === 'edit-time'          && slotId) return openTimeEditor(slotId);
-      if (action === 'toggle-lock'        && slotId) return toggleSlotLock(slotId);
-      if (action === 'swap-ref'           && slotId) return openSwapPicker(slotId);
-      if (action === 'unassign-ref'       && slotId) return unassignSlot(slotId);
-      if (action === 'cycle-reservation'  && slotId) return cycleReservation(slotId);
-      if (action === 'add-to-plan'        && ref)    return openAddToPlanPicker(ref);
-      if (action === 'jump-to-slot'       && slotId) return jumpToSlot(slotId);
-      if (action === 'select-hotel'       && hid)    return selectHotel(hid);
-      if (action === 'toggle-custom-form')           return toggleCustomForm();
-      if (action === 'save-custom-hotel')            return saveCustomHotel();
-      if (action === 'delete-custom-hotel' && hid)   return deleteCustomHotel(hid);
     }
 
     const chk = e.target.closest('.checklist-item');
     if (chk) {
       const id = chk.dataset.check;
-      const next = !STORE.state.checks[id];
-      STORE.update('checks', c => ({ ...c, [id]: next }));
-      chk.classList.toggle('checked', next);
+      STATE.checks[id] = !STATE.checks[id];
+      chk.classList.toggle('checked', STATE.checks[id]);
+      persistChecks();
       updatePackCount();
       return;
     }
   });
 
-  // Theme toggle
   $('#themeToggle').addEventListener('click', () => {
-    const next = STORE.state.theme === 'dark' ? 'light' : 'dark';
-    STORE.set('theme', next);
+    STATE.theme = STATE.theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('avl_theme', STATE.theme);
     applyTheme();
-  });
-
-  // Share plan
-  $('#shareBtn')?.addEventListener('click', sharePlan);
-
-  // Picker backdrop click — when user taps outside the sheet content,
-  // close the modal. (The <dialog> Escape key handling is built-in.)
-  const sheet = $('#pickerSheet');
-  if (sheet) {
-    sheet.addEventListener('click', e => {
-      if (e.target === sheet) closePicker();
-    });
-    sheet.addEventListener('cancel', e => { /* Esc — let default close happen */ });
-  }
-}
-
-/* ============================================================
-   SLOT INTERACTIONS — time editor, lock, swap
-   ============================================================ */
-
-function getSlot(slotId) {
-  return STORE.state.plan.slots.find(s => s.id === slotId);
-}
-
-function updateSlot(slotId, patch) {
-  const next = STORE.state.plan.slots.map(s =>
-    s.id === slotId ? { ...s, ...patch } : s
-  );
-  STORE.set('plan.slots', next);
-}
-
-function toggleSlotLock(slotId) {
-  const slot = getSlot(slotId);
-  if (!slot) return;
-  updateSlot(slotId, { locked: !slot.locked });
-}
-
-function unassignSlot(slotId) {
-  const slot = getSlot(slotId);
-  if (!slot) return;
-  updateSlot(slotId, { ref: null });
-}
-
-function cycleReservation(slotId) {
-  const slot = getSlot(slotId);
-  if (!slot) return;
-  const order = [undefined, 'needed', 'confirmed', 'walkin'];
-  const next = order[(order.indexOf(slot.reservation) + 1) % order.length];
-  updateSlot(slotId, { reservation: next });
-}
-
-// Opens a native <input type="time"> off-screen for the picker, then
-// applies the new time to the slot and cascades downstream unlocked
-// same-day slots by the delta.
-function openTimeEditor(slotId) {
-  const slot = getSlot(slotId);
-  if (!slot) return;
-
-  const input = document.createElement('input');
-  input.type = 'time';
-  input.value = timeToHM(slot.time);
-  input.style.cssText = 'position:fixed;left:-9999px;top:0;width:1px;height:1px;opacity:0;';
-  document.body.appendChild(input);
-
-  let resolved = false;
-  const cleanup = () => { if (!resolved) { resolved = true; input.remove(); } };
-
-  input.addEventListener('change', () => {
-    if (resolved) return;
-    resolved = true;
-    const newTime = hmToTime(input.value);
-    const delta = timeToMinutes(newTime) - timeToMinutes(slot.time);
-    if (delta !== 0) {
-      // Update this slot first, then cascade
-      updateSlot(slotId, { time: newTime });
-      const { conflicts } = shiftSlotsAfter(slotId, delta);
-      if (conflicts.length) {
-        toast(`Heads up — ${conflicts.length} slot${conflicts.length > 1 ? 's' : ''} now overlap${conflicts.length > 1 ? '' : 's'} a locked time. Adjust as needed.`);
-      }
-    }
-    input.remove();
-  });
-  input.addEventListener('blur', cleanup);
-
-  // showPicker is the modern API (Chrome 99+, Safari 16+); fall back to click
-  if (typeof input.showPicker === 'function') {
-    try { input.showPicker(); } catch { input.click(); }
-  } else {
-    input.click();
-  }
-}
-
-/* ----- PICKER (bottom-sheet modal) ----- */
-
-const DAY_LABELS = ['', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-function slotsReferencing(ref) {
-  if (!ref) return [];
-  return STORE.state.plan.slots.filter(s => s.ref === ref);
-}
-
-function openPicker({ eyebrow, title, options, onPick, showClear, clearLabel, currentId }) {
-  const sheet = $('#pickerSheet');
-  if (!sheet) return;
-
-  $('#pickerEyebrow').textContent = eyebrow || '';
-  $('#pickerTitle').innerHTML = title || '';
-
-  const body = $('#pickerBody');
-  body.innerHTML = options.length === 0
-    ? '<div class="picker-empty">Nothing matches this slot.</div>'
-    : options.map(opt => `
-        <button class="picker-option ${opt.id === currentId ? 'current' : ''}" data-pick-id="${opt.id}">
-          <div class="picker-name">${opt.name}</div>
-          <div class="picker-meta">
-            ${opt.tags.filter(t => t.label).map((t, i) =>
-              `${i > 0 ? '<span class="dot">·</span>' : ''}<span class="${t.kind || ''}">${t.label}</span>`
-            ).join('')}
-          </div>
-        </button>
-      `).join('');
-
-  if (showClear) {
-    body.insertAdjacentHTML('beforeend',
-      `<button class="picker-clear" data-pick-id="__clear__">${clearLabel || 'Remove from plan'}</button>`
-    );
-  }
-
-  // Wire option clicks
-  body.querySelectorAll('[data-pick-id]').forEach(el => {
-    el.addEventListener('click', () => {
-      const id = el.dataset.pickId;
-      onPick(id === '__clear__' ? null : id);
-      closePicker();
-    }, { once: true });
-  });
-
-  if (typeof sheet.showModal === 'function') {
-    try { sheet.showModal(); } catch { sheet.setAttribute('open', ''); }
-  } else {
-    sheet.setAttribute('open', '');
-  }
-}
-
-function closePicker() {
-  const sheet = $('#pickerSheet');
-  if (!sheet) return;
-  if (typeof sheet.close === 'function') {
-    try { sheet.close(); } catch { sheet.removeAttribute('open'); }
-  } else {
-    sheet.removeAttribute('open');
-  }
-}
-
-// ----- PULL flow: open picker from Plan tab to assign to a slot
-function openSwapPicker(slotId) {
-  const slot = getSlot(slotId);
-  if (!slot) return;
-  const hotelId = STORE.state.plan.hotelId;
-
-  let pool = [];
-  let kindLabel = '';
-
-  if (slot.kind === 'meal') {
-    pool = [
-      ...TRIP_DATA.restaurants.map(r => ({ ...r, _refKind: 'restaurant' })),
-      ...TRIP_DATA.treats.map(r => ({ ...r, _refKind: 'treat' }))
-    ].filter(r => r.mealTypes?.includes(slot.mealType));
-    kindLabel = (slot.mealType || 'meal').replace(/^./, c => c.toUpperCase());
-  } else if (slot.kind === 'activity') {
-    pool = TRIP_DATA.activities.map(a => ({ ...a, _refKind: 'activity' }));
-    kindLabel = 'Activity';
-  } else {
-    return; // other kinds aren't swappable
-  }
-
-  // Sort: walk first, then drive ascending, then unknown
-  const order = { walk: 0, drive: 1, unknown: 2 };
-  pool.sort((a, b) => {
-    const pa = proximity(hotelId, a);
-    const pb = proximity(hotelId, b);
-    if (order[pa.kind] !== order[pb.kind]) return order[pa.kind] - order[pb.kind];
-    return (pa.minutes ?? 99) - (pb.minutes ?? 99);
-  });
-
-  const options = pool.map(item => {
-    const p = proximity(hotelId, item);
-    return {
-      id: `${item._refKind}:${item.id}`,
-      name: item.name,
-      tags: [
-        { label: item.cat || item.tagline || '', kind: '' },
-        { label: item.price || '', kind: '' },
-        { label: p.label || '', kind: p.kind }
-      ]
-    };
-  });
-
-  const dayLabel = DAY_LABELS[slot.day] || `Day ${slot.day}`;
-  openPicker({
-    eyebrow: 'Choose for this slot',
-    title: `${kindLabel} · <em>${dayLabel} ${slot.time}</em>`,
-    options,
-    currentId: slot.ref,
-    showClear: !!slot.ref,
-    clearLabel: '✕ Remove pick (return to empty)',
-    onPick: (newRef) => {
-      updateSlot(slotId, { ref: newRef });
-      if (newRef) {
-        const picked = lookupRef(newRef);
-        toast(`${picked?.name || 'Picked'} → ${dayLabel} ${slot.time}`);
-      } else {
-        toast(`${dayLabel} ${slot.time} cleared — tap to choose another`);
-      }
-    }
-  });
-}
-
-// ----- PUSH flow: open picker from Eat/Do to assign this item to a slot
-function openAddToPlanPicker(ref) {
-  const item = lookupRef(ref);
-  if (!item) return;
-  const [kind] = ref.split(':');
-
-  let eligibleSlots = [];
-  if (kind === 'restaurant' || kind === 'treat') {
-    eligibleSlots = STORE.state.plan.slots.filter(s =>
-      s.kind === 'meal' && item.mealTypes?.includes(s.mealType)
-    );
-  } else if (kind === 'activity') {
-    eligibleSlots = STORE.state.plan.slots.filter(s => s.kind === 'activity');
-  }
-
-  const options = eligibleSlots.map(slot => {
-    const cur = lookupRef(slot.ref);
-    const slotKindLabel = slot.kind === 'meal'
-      ? (slot.mealType || 'meal').replace(/^./, c => c.toUpperCase())
-      : 'Activity';
-    const isCurrent = slot.ref === ref;
-    return {
-      id: slot.id,
-      name: `${DAY_LABELS[slot.day]} · ${slot.time} · ${slotKindLabel}`,
-      tags: [
-        cur
-          ? { label: isCurrent ? `Already here` : `Currently: ${cur.name}`, kind: isCurrent ? 'current-pick' : '' }
-          : { label: 'Empty slot — tap to fill', kind: 'empty' }
-      ]
-    };
-  });
-
-  openPicker({
-    eyebrow: 'Add to plan',
-    title: `<em>${item.name}</em><br>which slot?`,
-    options,
-    showClear: false,
-    onPick: (slotId) => {
-      if (!slotId) return;
-      const slot = getSlot(slotId);
-      if (!slot) return;
-      updateSlot(slotId, { ref });
-      toast(`${item.name} → ${DAY_LABELS[slot.day]} ${slot.time}`);
-    }
-  });
-}
-
-/* ----- HOTEL SELECTION (Phase 5) ----- */
-
-function selectHotel(hotelId) {
-  if (STORE.state.plan.hotelId === hotelId) return; // already selected
-  STORE.set('plan.hotelId', hotelId);
-  const h = lookupRef('hotel:' + hotelId);
-  toast(`Staying at ${h?.name || 'this hotel'} — plan updated`);
-}
-
-function toggleCustomForm() {
-  const form = document.getElementById('customHotelForm');
-  if (form) form.hidden = !form.hidden;
-}
-
-function saveCustomHotel() {
-  const name = document.getElementById('chName')?.value.trim();
-  if (!name) { toast('Give the hotel a name first.'); return; }
-  const address = document.getElementById('chAddress')?.value.trim() || '';
-  const neighborhood = document.getElementById('chNeighborhood')?.value || 'other';
-  const notes = document.getElementById('chNotes')?.value.trim() || '';
-  const id = 'custom-' + Date.now().toString(36);
-  const hotel = {
-    id, name, address,
-    neighborhood: neighborhood === 'other' ? '' : neighborhood,
-    custom: true,
-    tagline: notes || 'Your custom pick',
-    desc: notes || ''
-  };
-  STORE.update('plan.customHotels', list => [...(list || []), hotel]);
-  STORE.set('plan.hotelId', id); // auto-select
-  toast(`${name} added and selected`);
-}
-
-function deleteCustomHotel(hotelId) {
-  const wasSelected = STORE.state.plan.hotelId === hotelId;
-  STORE.update('plan.customHotels', list => (list || []).filter(h => h.id !== hotelId));
-  if (wasSelected) STORE.set('plan.hotelId', FEATURED_HOTEL);
-  toast('Custom hotel removed');
-}
-
-// ----- Jump from an assignment chip in Eat/Do to the slot in Plan
-function jumpToSlot(slotId) {
-  switchTab('plan');
-  setTimeout(() => {
-    const el = document.querySelector(`[data-slot-id="${slotId}"]`);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      el.classList.add('flash');
-      setTimeout(() => el.classList.remove('flash'), 1400);
-    }
-  }, 380);
-}
-
-/* --- Lightweight toast --- */
-let _toastTimer = null;
-function toast(msg) {
-  let el = $('#avlToast');
-  if (!el) {
-    el = document.createElement('div');
-    el.id = 'avlToast';
-    el.className = 'avl-toast';
-    document.body.appendChild(el);
-  }
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(_toastTimer);
-  _toastTimer = setTimeout(() => el.classList.remove('show'), 3200);
-}
-
-/* ============================================================
-   SHARE PLAN (Phase 6a — URL-hash, zero infra)
-
-   Serializes the plan into a compact, version-tagged, base64url payload
-   carried in location.hash. Slots transmit only their mutable fields
-   (time/locked/ref) keyed by id; the recipient merges those deltas onto
-   their own SEED_SLOTS, so prose/structure always comes from their code.
-   ============================================================ */
-
-function b64urlEncode(str) {
-  const bytes = new TextEncoder().encode(str);
-  let bin = '';
-  bytes.forEach(b => { bin += String.fromCharCode(b); });
-  return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-}
-function b64urlDecode(s) {
-  s = s.replace(/-/g, '+').replace(/_/g, '/');
-  while (s.length % 4) s += '=';
-  const bin = atob(s);
-  const bytes = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-  return new TextDecoder().decode(bytes);
-}
-
-function serializePlan() {
-  const p = STORE.state.plan;
-  const slots = (p.slots || []).map(s => ({
-    i: s.id, t: s.time, l: s.locked ? 1 : 0, r: s.ref || 0, rv: s.reservation || 0
-  }));
-  const payload = { v: 1, h: p.hotelId, c: p.customHotels || [], s: slots };
-  return b64urlEncode(JSON.stringify(payload));
-}
-
-function deserializePlan(encoded) {
-  const payload = JSON.parse(b64urlDecode(encoded));
-  if (payload.v !== 1) throw new Error('Unsupported plan version: ' + payload.v);
-  const byId = {};
-  SEED_SLOTS.forEach(s => { byId[s.id] = { ...s }; });
-  (payload.s || []).forEach(cs => {
-    const base = byId[cs.i] || { id: cs.i, day: 99, kind: 'fixed' };
-    base.time = cs.t;
-    base.locked = !!cs.l;
-    base.ref = cs.r || null;
-    base.reservation = cs.rv || undefined;
-    byId[cs.i] = base;
-  });
-  // Preserve seed order; append any non-seed slots at the end
-  const slots = SEED_SLOTS.map(s => byId[s.id]).filter(Boolean);
-  (payload.s || []).forEach(cs => {
-    if (!SEED_SLOTS.find(s => s.id === cs.i)) slots.push(byId[cs.i]);
-  });
-  return { hotelId: payload.h, customHotels: payload.c || [], slots };
-}
-
-async function sharePlan() {
-  const url = location.origin + location.pathname + '#p=' + serializePlan();
-  const data = { title: 'Asheville 2026 · Our Plan', text: 'Here\'s our Asheville trip plan', url };
-  if (navigator.share) {
-    try { await navigator.share(data); return; }
-    catch (e) { if (e.name === 'AbortError') return; /* else fall through */ }
-  }
-  try {
-    await navigator.clipboard.writeText(url);
-    toast('Share link copied — paste it to the family');
-  } catch (e) {
-    window.prompt('Copy this share link:', url);
-  }
-}
-
-// On boot: if the URL carries a shared plan, load it over local state.
-function loadSharedPlanFromHash() {
-  const h = location.hash || '';
-  if (!h.startsWith('#p=')) return false;
-  try {
-    const plan = deserializePlan(h.slice(3));
-    STORE.state.plan = {
-      ...STORE.state.plan,
-      hotelId: plan.hotelId || STORE.state.plan.hotelId,
-      customHotels: plan.customHotels || [],
-      slots: plan.slots
-    };
-    persist();
-    return true;
-  } catch (e) {
-    console.warn('Could not load shared plan from URL:', e);
-    return false;
-  }
-}
-
-function showSharedBanner() {
-  const el = document.createElement('div');
-  el.className = 'shared-banner';
-  el.innerHTML = `<span>Viewing a shared plan. It's now saved on this device.</span><button id="dismissSharedBanner" aria-label="Dismiss">✕</button>`;
-  document.body.appendChild(el);
-  requestAnimationFrame(() => el.classList.add('show'));
-  el.querySelector('#dismissSharedBanner').addEventListener('click', () => {
-    el.classList.remove('show');
-    // Strip the hash so a refresh doesn't re-trigger the banner
-    history.replaceState(null, '', location.pathname + location.search);
-    setTimeout(() => el.remove(), 300);
   });
 }
 
@@ -2251,7 +1173,5 @@ if ('serviceWorker' in navigator) {
 
 // Init
 applyTheme();
-const _viewingShared = loadSharedPlanFromHash(); // may override plan before first render
 mountSections();
 bindEvents();
-if (_viewingShared) showSharedBanner();
